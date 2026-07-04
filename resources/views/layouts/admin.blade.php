@@ -100,25 +100,54 @@
             <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
                 <div class="px-3 mb-2 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Navigation</div>
                 
+                @if(auth()->user()->hasPermission('dashboard'))
                 <!-- Link: Dashboard -->
                 <a href="{{ url('admin/dashboard') }}" 
                    class="group flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'dashboard' ? 'bg-blue-50/70 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400 font-bold border-l-4 border-gmcBlue' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white' }}">
                     <i class="fa-solid fa-chart-pie mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'dashboard' ? 'text-gmcBlue dark:text-blue-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300' }}"></i>
                     Dashboard
                 </a>
+                @endif
                 
+                @if(auth()->user()->hasPermission('proofs'))
                 <!-- Link: Payment Proofs -->
                 <a href="{{ url('admin/payment-proofs/index') }}" 
                    class="group flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'payment_proofs' ? 'bg-blue-50/70 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400 font-bold border-l-4 border-gmcBlue' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white' }}">
                     <i class="fa-solid fa-file-invoice-dollar mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'payment_proofs' ? 'text-gmcBlue dark:text-blue-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300' }}"></i>
                     Payment Proofs
                 </a>
+                @endif
                 
+                @if(auth()->user()->hasPermission('sizes'))
                 <!-- Link: Sizes -->
                 <a href="{{ url('admin/size/index') }}" 
                    class="group flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'size' ? 'bg-blue-50/70 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400 font-bold border-l-4 border-gmcBlue' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white' }}">
                     <i class="fa-solid fa-ruler-combined mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'size' ? 'text-gmcBlue dark:text-blue-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300' }}"></i>
                     Size Parameters
+                </a>
+                @endif
+
+                @if(auth()->user()->role === 'owner')
+                <!-- Link: Account Settings -->
+                <a href="{{ url('admin/settings') }}" 
+                   class="group flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'settings' ? 'bg-blue-50/70 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400 font-bold border-l-4 border-gmcBlue' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white' }}">
+                    <i class="fa-solid fa-gears mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'settings' ? 'text-gmcBlue dark:text-blue-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300' }}"></i>
+                    Account Settings
+                </a>
+
+                <!-- Link: Employee Control -->
+                <a href="{{ url('admin/employees') }}" 
+                   class="group flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'employees' ? 'bg-blue-50/70 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400 font-bold border-l-4 border-gmcBlue' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white' }}">
+                    <i class="fa-solid fa-users-gear mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'employees' ? 'text-gmcBlue dark:text-blue-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300' }}"></i>
+                    Employee Control
+                </a>
+                @endif
+
+                <!-- Action: Logout -->
+                <a href="{{ route('logout') }}" 
+                   class="group flex items-center px-3.5 py-3 text-sm font-medium rounded-xl text-red-650 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-700 dark:hover:text-red-400 transition-all duration-150">
+                    <i class="fa-solid fa-right-from-bracket mr-3 text-lg transition-transform group-hover:translate-x-0.5 text-red-500 dark:text-red-400"></i>
+                    Logout Session
                 </a>
             </nav>
             
@@ -126,11 +155,11 @@
             <div class="p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
                 <div class="flex items-center space-x-3">
                     <div class="w-9 h-9 rounded-full bg-blue-100 dark:bg-blue-950 flex items-center justify-center text-gmcBlue dark:text-blue-400 font-bold text-sm">
-                        AD
+                        {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
                     </div>
                     <div>
-                        <div class="text-xs font-bold text-slate-800 dark:text-slate-200">Admin Control</div>
-                        <div class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold">admin@gmc.edu.pk</div>
+                        <div class="text-xs font-bold text-slate-800 dark:text-slate-200 truncate max-w-[130px]">{{ auth()->user()->name }}</div>
+                        <div class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold truncate max-w-[130px]">{{ auth()->user()->email }}</div>
                     </div>
                 </div>
             </div>
@@ -155,8 +184,10 @@
                 </button>
                 
                 <div class="text-right hidden sm:block">
-                    <span class="block text-xs font-bold text-slate-800 dark:text-slate-200">GMC Administrator</span>
-                    <span class="block text-[10px] text-slate-400 dark:text-slate-500 font-semibold">Verified Session Auditor</span>
+                    <span class="block text-xs font-bold text-slate-800 dark:text-slate-200">{{ auth()->user()->name }}</span>
+                    <span class="block text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
+                        {{ auth()->user()->role === 'owner' ? 'System Owner' : 'Revenue Officer' }}
+                    </span>
                 </div>
                 <div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-650 dark:text-slate-350 font-bold">
                     <i class="fa-solid fa-user-shield"></i>

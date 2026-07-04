@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'permissions',
     ];
 
     /**
@@ -40,5 +42,17 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'permissions' => 'array',
     ];
+
+    /**
+     * Helper to verify user permissions.
+     */
+    public function hasPermission($permission)
+    {
+        if ($this->role === 'owner') {
+            return true; // Owner possesses all dashboard privileges by default
+        }
+        return is_array($this->permissions) && in_array($permission, $this->permissions);
+    }
 }
