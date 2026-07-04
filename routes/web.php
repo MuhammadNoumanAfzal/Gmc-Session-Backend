@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PaymentProofController;
@@ -19,10 +20,29 @@ use App\Http\Controllers\Admin\EmployeeController;
 |
 */
 
-// Redirect root to login page
+// Redirect root to login page or dashboard
 Route::get('/', function () {
+    if (Auth::check()) {
+        $user = Auth::user();
+        if ($user->role === 'owner') {
+            return redirect()->route('admin.dashboard');
+        }
+        return redirect()->route('payment-proofs.index');
+    }
     return redirect()->route('login');
 });
+
+// Redirect /home to dashboard based on role
+Route::get('/home', function () {
+    if (Auth::check()) {
+        $user = Auth::user();
+        if ($user->role === 'owner') {
+            return redirect()->route('admin.dashboard');
+        }
+        return redirect()->route('payment-proofs.index');
+    }
+    return redirect()->route('login');
+})->name('home');
 
 // Authentication Routes
 Route::middleware('guest')->group(function () {
