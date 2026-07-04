@@ -32,6 +32,21 @@
                         gmcBlueDark: '#0a2a5a',
                         gmcGreen: '#39b54a',
                         gmcGreenDark: '#2c8f3a',
+                        slate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#2d3039', // clean dark charcoal for light mode text & dark mode borders
+                            850: '#282b33', // dark charcoal inner elements
+                            855: '#323642', // secondary dark charcoal details
+                            900: '#23262d', // premium charcoal panel/sidebar bg
+                            950: '#181a1f', // premium charcoal body bg
+                        }
                     }
                 }
             }
