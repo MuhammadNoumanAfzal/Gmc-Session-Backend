@@ -23,14 +23,14 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                         
                         <!-- Block 1: Review Status -->
-                        <div class="bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 p-4 rounded-xl text-center flex flex-col items-center justify-center transition-colors">
+                        <div class="bg-slate-50 dark:bg-slate-855 border border-slate-200 dark:border-slate-800 p-4 rounded-xl text-center flex flex-col items-center justify-center transition-colors">
                             <span class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2 font-bold">Review Status</span>
                             @if($paymentProof->status === 'approved')
                                 <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-50 dark:bg-emerald-950/20 text-gmcGreen dark:text-emerald-450 border border-emerald-200 dark:border-emerald-900/30 uppercase tracking-wide">
                                     Approved
                                 </span>
                             @elseif($paymentProof->status === 'rejected')
-                                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold bg-red-50 dark:bg-red-950/20 text-red-650 dark:text-red-400 border border-red-200 dark:border-red-900/30 uppercase tracking-wide">
+                                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold bg-red-50 dark:bg-red-950/20 text-red-655 dark:text-red-400 border border-red-200 dark:border-red-900/30 uppercase tracking-wide">
                                     Rejected
                                 </span>
                             @else
@@ -41,16 +41,16 @@
                         </div>
                         
                         <!-- Block 2: Amount Verified -->
-                        <div class="bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 p-4 rounded-xl text-center flex flex-col items-center justify-center transition-colors">
+                        <div class="bg-slate-50 dark:bg-slate-855 border border-slate-200 dark:border-slate-800 p-4 rounded-xl text-center flex flex-col items-center justify-center transition-colors">
                             <span class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5 font-bold">Amount Verified</span>
                             <span class="text-slate-800 dark:text-white font-extrabold text-2xl">${{ number_format($paymentProof->amount_paid, 2) }}</span>
                         </div>
                         
                         <!-- Block 3: Verification Alerts -->
-                        <div class="bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 p-4 rounded-xl text-center flex flex-col items-center justify-center transition-colors">
+                        <div class="bg-slate-50 dark:bg-slate-855 border border-slate-200 dark:border-slate-800 p-4 rounded-xl text-center flex flex-col items-center justify-center transition-colors">
                             <span class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2 font-bold">Fraud Detection</span>
                             @if($paymentProof->duplicate_submission)
-                                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold bg-red-50 dark:bg-red-950/20 text-red-650 dark:text-red-400 border border-red-200 dark:border-red-900/30 uppercase tracking-wide animate-bounce">
+                                <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold bg-red-50 dark:bg-red-950/20 text-red-655 dark:text-red-400 border border-red-200 dark:border-red-900/30 uppercase tracking-wide animate-bounce">
                                     Duplicate Detected
                                 </span>
                             @else
@@ -125,7 +125,7 @@
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <dt class="text-slate-500 dark:text-slate-400 font-medium">Reference ID</dt>
-                                    <dd><code class="text-slate-850 dark:text-slate-200 bg-slate-105 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded font-mono text-xs">{{ $paymentProof->transaction_reference }}</code></dd>
+                                    <dd><code class="text-slate-850 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded font-mono text-xs">{{ $paymentProof->transaction_reference }}</code></dd>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <dt class="text-slate-500 dark:text-slate-400 font-medium">Last 4 Digits</dt>
@@ -165,26 +165,34 @@
                         </div>
                     </div>
 
-                    <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <!-- Premium Action Blocks (Modern, elegant, unique) -->
+                    <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row justify-between items-center gap-4">
                         <div>
-                            <a href="{{ route('payment-proofs.index') }}" class="inline-flex items-center text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-gmcBlue dark:hover:text-blue-400 transition-colors">
+                            <a href="{{ route('payment-proofs.index') }}" class="inline-flex items-center text-sm font-bold text-slate-500 dark:text-slate-405 hover:text-gmcBlue dark:hover:text-blue-400 transition-colors">
                                 <i class="fa-solid fa-arrow-left mr-2"></i>
                                 Back to All Listings
                             </a>
                         </div>
                         <div class="flex flex-wrap items-center gap-3">
                             
-                            <a href="{{ route('payment-proofs.download', $paymentProof->id) }}" class="px-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 text-sm font-semibold flex items-center transition-colors">
-                                <i class="fa-solid fa-download mr-2 text-base"></i>
+                            <!-- Action: Download Proof (Premium Emerald Gradient Button) -->
+                            <a href="{{ route('payment-proofs.download', $paymentProof->id) }}" 
+                               class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-sm font-bold flex items-center transition shadow-md shadow-emerald-200/50 dark:shadow-none hover:-translate-y-0.5 duration-150">
+                                <i class="fa-solid fa-cloud-arrow-down mr-2 text-base"></i>
                                 Download Proof
                             </a>
                             
-                            <a href="{{ route('payment-proofs.slip', $paymentProof->id) }}" class="px-4 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-amber-50 dark:hover:bg-amber-950/20 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-amber-300 dark:hover:border-amber-900/30 hover:text-amber-700 dark:hover:text-amber-500 text-sm font-semibold flex items-center transition-colors" target="_blank">
-                                <i class="fa-solid fa-file-invoice mr-2 text-base"></i>
+                            <!-- Action: View Slip (Premium Amber Gradient Button) -->
+                            <a href="{{ route('payment-proofs.slip', $paymentProof->id) }}" 
+                               class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-550 hover:from-amber-650 hover:from-orange-600 text-white text-sm font-bold flex items-center transition shadow-md shadow-amber-200/50 dark:shadow-none hover:-translate-y-0.5 duration-150" 
+                               target="_blank">
+                                <i class="fa-solid fa-receipt mr-2 text-base"></i>
                                 View Slip
                             </a>
                             
-                            <a href="{{ route('payment-proofs.edit', $paymentProof->id) }}" class="px-5 py-2 rounded-xl bg-gmcBlue hover:bg-gmcBlueDark text-white font-semibold text-sm flex items-center shadow-md shadow-blue-100 dark:shadow-none transition-colors">
+                            <!-- Action: Review & Edit (Premium Navy Button) -->
+                            <a href="{{ route('payment-proofs.edit', $paymentProof->id) }}" 
+                               class="px-6 py-2.5 rounded-xl bg-gmcBlue hover:bg-gmcBlueDark text-white font-bold text-sm flex items-center transition shadow-md shadow-blue-200 dark:shadow-none hover:-translate-y-0.5 duration-150">
                                 <i class="fa-solid fa-user-shield mr-2 text-base"></i>
                                 Review & Edit
                             </a>

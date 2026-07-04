@@ -91,7 +91,7 @@
                                                 </span>
                                             @elseif($value->status === 'rejected')
                                                 <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-red-50 dark:bg-red-950/20 text-red-600 dark:text-red-400 border border-red-100 dark:border-red-900/30 uppercase tracking-wide">
-                                                    <span class="w-1.5 h-1.5 bg-red-500 rounded-full mr-1.5"></span>
+                                                    <span class="w-1.5 h-1.5 bg-red-550 rounded-full mr-1.5"></span>
                                                     Rejected
                                                 </span>
                                             @else
@@ -102,45 +102,52 @@
                                             @endif
                                         </td>
                                         
-                                        <!-- Column 5: Actions -->
+                                        <!-- Column 5: Actions (Modernized & Segmented) -->
                                         <td class="py-4 px-4 text-center">
-                                            <div class="inline-flex items-center space-x-1.5">
+                                            <div class="inline-flex items-center justify-center gap-2">
                                                 
-                                                <!-- Action: View details -->
-                                                <a href="{{ route('payment-proofs.show', $value->id) }}" 
-                                                   class="p-2 bg-slate-50 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-950/30 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-gmcBlue dark:hover:text-blue-400 rounded-xl transition duration-150" 
-                                                   title="View Full Details">
-                                                    <i class="fa-solid fa-eye text-sm"></i>
-                                                </a>
-                                                
-                                                <!-- Action: Edit / Review -->
-                                                <a href="{{ route('payment-proofs.edit', $value->id) }}" 
-                                                   class="p-2 bg-slate-50 dark:bg-slate-800 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-gmcGreen dark:hover:text-emerald-455 rounded-xl transition duration-150" 
-                                                   title="Edit Submission">
-                                                    <i class="fa-solid fa-pen-to-square text-sm"></i>
-                                                </a>
-                                                
-                                                <!-- Action: Receipt Slip -->
+                                                <!-- Action: Receipt Slip (Premium Voucher Pill) -->
                                                 <a href="{{ route('payment-proofs.slip', $value->id) }}" 
-                                                   class="p-2 bg-slate-50 dark:bg-slate-800 hover:bg-amber-50 dark:hover:bg-amber-950/30 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-gmcGold rounded-xl transition duration-150" 
-                                                   title="Generate Receipt Slip" target="_blank">
-                                                    <i class="fa-solid fa-file-invoice text-sm"></i>
+                                                   class="inline-flex items-center px-3 py-1.5 text-xs font-extrabold rounded-xl border border-amber-250 dark:border-amber-900/30 bg-amber-50 dark:bg-amber-950/20 text-amber-700 dark:text-amber-405 hover:bg-amber-100 dark:hover:bg-amber-900/35 transition duration-150 gap-1.5 shadow-sm" 
+                                                   title="Generate Slip Receipt" target="_blank">
+                                                    <i class="fa-solid fa-receipt text-amber-600 dark:text-amber-400 text-sm animate-pulse"></i>
+                                                    Slip
                                                 </a>
                                                 
-                                                <!-- Action: Download Proof File -->
+                                                <!-- Action: Download Proof File (Premium Download Pill) -->
                                                 <a href="{{ route('payment-proofs.download', $value->id) }}" 
-                                                   class="p-2 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-850 dark:hover:text-white rounded-xl transition duration-150" 
-                                                   title="Download Proof File">
-                                                    <i class="fa-solid fa-download text-sm"></i>
+                                                   class="inline-flex items-center px-3 py-1.5 text-xs font-extrabold rounded-xl border border-emerald-250 dark:border-emerald-900/30 bg-emerald-50 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-900/35 transition duration-150 gap-1.5 shadow-sm" 
+                                                   title="Download Proof Document">
+                                                    <i class="fa-solid fa-cloud-arrow-down text-emerald-600 dark:text-emerald-400 text-sm"></i>
+                                                    Proof
                                                 </a>
                                                 
-                                                <!-- Action: Delete -->
-                                                <a href="{{ route('payment-proofs.destroy', $value->id) }}"
-                                                   onclick="return confirm('Are you sure you want to delete this submission?')"
-                                                   class="p-2 bg-slate-50 dark:bg-slate-800 hover:bg-red-50 dark:hover:bg-red-950/30 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-red-600 rounded-xl transition duration-150" 
-                                                   title="Delete Submission">
-                                                    <i class="fa-solid fa-trash-can text-sm"></i>
-                                                </a>
+                                                <span class="text-slate-200 dark:text-slate-800 mx-1">|</span>
+                                                
+                                                <!-- Operations group (subtle circular keys) -->
+                                                <div class="flex items-center gap-1.5">
+                                                    <!-- View Details -->
+                                                    <a href="{{ route('payment-proofs.show', $value->id) }}" 
+                                                       class="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-blue-950/30 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-gmcBlue dark:hover:text-blue-400 flex items-center justify-center transition duration-150" 
+                                                       title="View Submission Info">
+                                                        <i class="fa-solid fa-eye text-xs"></i>
+                                                    </a>
+                                                    
+                                                    <!-- Edit Review -->
+                                                    <a href="{{ route('payment-proofs.edit', $value->id) }}" 
+                                                       class="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 hover:bg-gmcGreen/10 dark:hover:bg-gmcGreen/10 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-gmcGreen dark:hover:text-gmcGreen flex items-center justify-center transition duration-150" 
+                                                       title="Review & Edit Status">
+                                                        <i class="fa-solid fa-pen-to-square text-xs"></i>
+                                                    </a>
+                                                    
+                                                    <!-- Delete -->
+                                                    <a href="{{ route('payment-proofs.destroy', $value->id) }}"
+                                                       onclick="return confirm('Are you sure you want to delete this submission?')"
+                                                       class="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 hover:bg-red-50 dark:hover:bg-red-950/30 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-red-650 flex items-center justify-center transition duration-150" 
+                                                       title="Delete Submission">
+                                                        <i class="fa-solid fa-trash-can text-xs"></i>
+                                                    </a>
+                                                </div>
                                                 
                                             </div>
                                         </td>
@@ -148,7 +155,7 @@
                                 @empty
                                     <tr>
                                         <td colspan="5" class="py-12 px-4 text-center text-slate-400">
-                                            <i class="fa-solid fa-folder-open text-4xl mb-3 text-slate-200 dark:text-slate-850 block"></i>
+                                            <i class="fa-solid fa-folder-open text-4xl mb-3 text-slate-200 dark:text-slate-800 block"></i>
                                             No payment proof submissions found.
                                         </td>
                                     </tr>
