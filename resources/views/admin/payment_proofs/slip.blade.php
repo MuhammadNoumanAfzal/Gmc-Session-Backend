@@ -16,25 +16,34 @@
             --bg-soft: #ffffff;
             --text-primary: #0f172a;
             --text-muted: #64748b;
-            --accent-violet: #6366f1;
-            --accent-violet-light: rgba(99, 102, 241, 0.08);
-            --accent-gold: #d97706;
-            --accent-success: #059669;
+            --accent-blue: #0e3d81;
+            --accent-green: #39b54a;
+            --accent-gold: #b45309;
             --accent-danger: #dc2626;
             --border-color: #e2e8f0;
+        }
+
+        /* Dark mode values */
+        .dark-theme {
+            --bg-primary: #050505;
+            --bg-soft: #111827;
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #1f2937;
         }
 
         body {
             margin: 0;
             padding: 0;
             font-family: 'Manrope', sans-serif;
-            background: radial-gradient(circle at top, rgba(99, 102, 241, 0.08), transparent 30%),
-                        linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+            background: radial-gradient(circle at top, rgba(14, 61, 129, 0.08), transparent 30%),
+                        linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-primary) 100%);
             color: var(--text-primary);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
+            transition: background 0.2s ease, color 0.2s ease;
         }
 
         /* Floating action header on screen */
@@ -46,11 +55,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
+            background: var(--bg-soft);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
             box-sizing: border-box;
         }
 
@@ -68,23 +76,23 @@
         }
 
         .btn-print {
-            background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
-            border: 1px solid rgba(13, 148, 136, 0.2);
+            background: linear-gradient(135deg, var(--accent-green) 0%, #2c8f3a 100%);
+            border: 1px solid rgba(57, 181, 74, 0.2);
             color: white;
-            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+            box-shadow: 0 4px 12px rgba(57, 181, 74, 0.25);
         }
         .btn-print:hover {
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(13, 148, 136, 0.35);
+            box-shadow: 0 6px 16px rgba(57, 181, 74, 0.4);
         }
 
         .btn-close {
-            background: #ffffff;
+            background: var(--bg-soft);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
         }
         .btn-close:hover {
-            background: #f8fafc;
+            background: var(--bg-primary);
             color: var(--text-primary);
         }
 
@@ -92,15 +100,16 @@
         .receipt-card {
             width: 95%;
             max-width: 550px;
-            background: #ffffff;
+            background: var(--bg-soft);
             border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 40px;
             margin: 30px auto;
-            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.04);
             box-sizing: border-box;
             position: relative;
             overflow: hidden;
+            transition: background 0.2s ease, border-color 0.2s ease;
         }
 
         .receipt-card::before {
@@ -110,7 +119,7 @@
             left: 0;
             width: 100%;
             height: 6px;
-            background: linear-gradient(90deg, var(--accent-violet) 0%, #0d9488 100%);
+            background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-green) 100%);
         }
 
         /* Receipt Header */
@@ -123,7 +132,7 @@
             font-family: 'Sora', sans-serif;
             font-weight: 800;
             font-size: 24px;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-violet) 100%);
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-green) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0 0 6px 0;
@@ -159,15 +168,15 @@
         }
 
         .stamp-approved {
-            border-color: var(--accent-success);
-            color: var(--accent-success);
-            background: rgba(5, 150, 105, 0.04);
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+            background: rgba(57, 181, 74, 0.04);
         }
 
         .stamp-pending {
             border-color: var(--accent-gold);
             color: var(--accent-gold);
-            background: rgba(217, 119, 6, 0.04);
+            background: rgba(180, 83, 9, 0.04);
         }
 
         .stamp-rejected {
@@ -228,7 +237,7 @@
         }
 
         .total-amount {
-            color: var(--text-primary);
+            color: var(--accent-green);
             font-size: 20px;
             font-weight: 800;
         }
@@ -238,7 +247,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: #f8fafc;
+            background: var(--bg-primary);
             border-radius: 16px;
             padding: 16px;
             margin-top: 24px;
@@ -251,7 +260,7 @@
             background: white;
             padding: 4px;
             border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
             border: 1px solid var(--border-color);
         }
 
@@ -386,7 +395,7 @@
         <div class="details-grid">
             <div class="detail-row">
                 <span class="detail-label">Receipt Number</span>
-                <span class="detail-value text-slate-800 font-extrabold font-mono">{{ strtoupper($paymentProof->submission_id) }}</span>
+                <span class="detail-value font-mono" style="font-weight: 800;">{{ strtoupper($paymentProof->submission_id) }}</span>
             </div>
             <div class="detail-row">
                 <span class="detail-label">Transaction Date</span>
@@ -431,7 +440,7 @@
             </div>
             <div class="pricing-row.total pricing-row total">
                 <span class="detail-label">Grand Total Verified</span>
-                <span class="total-amount text-emerald-600">${{ number_format($paymentProof->amount_paid, 2) }}</span>
+                <span class="total-amount">${{ number_format($paymentProof->amount_paid, 2) }}</span>
             </div>
         </div>
 
@@ -454,6 +463,13 @@
     </div>
 
     <script>
+        // Check active theme state of opener window
+        if (window.opener && window.opener.document.documentElement.classList.contains('dark')) {
+            document.body.classList.add('dark-theme');
+        } else if (localStorage.theme === 'dark') {
+            document.body.classList.add('dark-theme');
+        }
+        
         // Trigger print dialog automatically when loaded as a printing request
         window.addEventListener('DOMContentLoaded', () => {
             if (window.location.search.includes('print=true')) {
