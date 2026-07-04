@@ -13,28 +13,29 @@
     
     <style>
         :root {
-            --bg-primary: #f1f5f9;
-            --bg-soft: #ffffff;
-            --text-primary: #0f172a;
-            --text-muted: #475569;
+            --bg-primary: #e2e8f0;
+            --bg-soft: linear-gradient(135deg, #eef6ff 0%, #d8eaff 100%); /* Colored Light Ice-Blue, no white! */
+            --text-primary: #0e3d81; /* GMC Navy Blue text color */
+            --text-muted: #334155;
             --accent-blue: #0e3d81;
             --accent-green: #15803d;
-            --accent-green-light: #f0fdf4;
+            --accent-green-light: rgba(21, 128, 61, 0.08);
             --accent-gold: #b45309;
-            --accent-gold-light: #fffbeb;
+            --accent-gold-light: rgba(180, 83, 9, 0.08);
             --accent-danger: #b91c1c;
-            --accent-danger-light: #fef2f2;
-            --border-color: #cbd5e1;
-            --card-shadow: 0 15px 30px -10px rgba(15, 23, 42, 0.1);
+            --accent-danger-light: rgba(185, 28, 28, 0.08);
+            --border-color: rgba(14, 61, 129, 0.15);
+            --card-shadow: 0 15px 30px -10px rgba(14, 61, 129, 0.15);
         }
 
         .dark-theme {
-            --bg-primary: #090d16;
-            --bg-soft: #111827;
+            --bg-primary: #05080e;
+            --bg-soft: linear-gradient(135deg, #0e1e38 0%, #07101e 100%); /* Colored Deep Space Navy, no white! */
             --text-primary: #f8fafc;
             --text-muted: #94a3b8;
-            --border-color: #374151;
-            --accent-blue-light: rgba(56, 189, 248, 0.03);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            --accent-blue: #38bdf8;
         }
 
         * {
@@ -55,7 +56,7 @@
             transition: background-color 0.2s ease, color 0.2s ease;
         }
 
-        /* Sleek Floating Header Controls */
+        /* Tightly colored action bar */
         .action-header {
             width: 100%;
             max-width: 380px;
@@ -63,7 +64,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: var(--bg-soft);
+            background: var(--bg-soft);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             box-shadow: var(--card-shadow);
@@ -85,7 +86,7 @@
         }
 
         .btn-print {
-            background: linear-gradient(135deg, var(--accent-blue) 0%, #0a2d5e 100%);
+            background: linear-gradient(135deg, #0e3d81 0%, #0a2d5e 100%);
             color: white;
             border: none;
             box-shadow: 0 4px 10px rgba(14, 61, 129, 0.2);
@@ -96,27 +97,26 @@
         }
 
         .btn-close {
-            background-color: var(--bg-soft);
+            background-color: rgba(255, 255, 255, 0.15);
             border: 1px solid var(--border-color);
-            color: var(--text-muted);
-        }
-        .btn-close:hover {
-            background-color: var(--bg-primary);
             color: var(--text-primary);
         }
+        .btn-close:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
 
-        /* Thermal Ticket Receipt Card */
+        /* Thermal Ticket Receipt Card with colored background */
         .invoice-container {
             width: 100%;
             max-width: 380px;
-            background-color: var(--bg-soft);
+            background: var(--bg-soft); /* This has the customized light-blue/deep-navy colored gradient */
             border: 1px solid var(--border-color);
             border-radius: 16px 16px 0 0;
             padding: 24px 20px 32px 20px;
             box-shadow: var(--card-shadow);
             position: relative;
             overflow: hidden;
-            transition: background-color 0.2s ease;
+            transition: background 0.2s ease;
         }
 
         /* Ticket Top Colored Strip */
@@ -127,7 +127,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-green) 100%);
+            background: linear-gradient(90deg, #0e3d81 0%, #39b54a 100%);
         }
 
         /* CSS-based jagged receipt tear bottom edge */
@@ -144,7 +144,7 @@
             background-size: 10px 10px;
         }
 
-        /* Header block containing Logo & Title */
+        /* Header block */
         .invoice-header {
             display: flex;
             flex-direction: column;
@@ -157,14 +157,14 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-green) 100%);
+            background: linear-gradient(135deg, #0e3d81 0%, #39b54a 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 18px;
             margin-bottom: 8px;
-            box-shadow: 0 4px 8px rgba(14, 61, 129, 0.1);
+            box-shadow: 0 4px 8px rgba(14, 61, 129, 0.15);
         }
 
         .brand-name {
@@ -202,19 +202,19 @@
 
         .status-badge.approved {
             background-color: var(--accent-green-light);
-            border-color: rgba(21, 128, 61, 0.2);
+            border-color: rgba(21, 128, 61, 0.25);
             color: var(--accent-green);
         }
 
         .status-badge.pending {
             background-color: var(--accent-gold-light);
-            border-color: rgba(180, 83, 9, 0.2);
+            border-color: rgba(180, 83, 9, 0.25);
             color: var(--accent-gold);
         }
 
         .status-badge.rejected {
             background-color: var(--accent-danger-light);
-            border-color: rgba(185, 28, 28, 0.2);
+            border-color: rgba(185, 28, 28, 0.25);
             color: var(--accent-danger);
         }
 
@@ -224,6 +224,7 @@
             border-top: 1.5px dashed var(--border-color);
             margin: 16px 0;
             height: 0;
+            opacity: 0.8;
         }
 
         /* Detail List */
@@ -267,15 +268,17 @@
             font-size: 12.5px;
         }
 
-        /* Premium Total Section */
+        /* Cost Section */
         .cost-section {
-            background: var(--accent-blue-light);
+            background: rgba(14, 61, 129, 0.05);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 14px;
             text-align: center;
             margin: 16px 0;
-            position: relative;
+        }
+        .dark-theme .cost-section {
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .cost-label {
@@ -301,11 +304,14 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            background-color: var(--bg-primary);
+            background-color: rgba(14, 61, 129, 0.03);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 12px;
             margin-bottom: 20px;
+        }
+        .dark-theme .security-block {
+            background-color: rgba(0, 0, 0, 0.2);
         }
 
         .qr-box {
@@ -373,7 +379,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* Footer contact card */
+        /* Footer */
         .support-card {
             text-align: center;
             font-size: 9px;
@@ -383,7 +389,7 @@
         }
 
         /* ------------------------------------------------------------- */
-        /* MEDIA PRINT STYLES - Optimized receipt ticket */
+        /* MEDIA PRINT STYLES - preserves colored ticket card borders */
         /* ------------------------------------------------------------- */
         @media print {
             @page {
@@ -404,10 +410,12 @@
             .invoice-container {
                 width: 100% !important;
                 max-width: 320px !important;
-                background-color: #ffffff !important;
-                border: none !important;
+                background: #ecf5ff !important; /* Forces soft light blue background on print */
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+                border: 1px solid #cbd5e1 !important;
                 box-shadow: none !important;
-                padding: 0 !important;
+                padding: 20px !important;
                 margin: 0 auto !important;
             }
 
@@ -416,24 +424,24 @@
             }
 
             .brand-name, .security-title {
-                color: #000000 !important;
+                color: #0e3d81 !important;
             }
 
             .info-label, .security-details, .support-card, .stamp-label, .brand-tagline {
-                color: #444444 !important;
+                color: #334155 !important;
             }
 
             .info-value, .cost-label {
-                color: #000000 !important;
+                color: #0e3d81 !important;
             }
 
             .cost-section {
-                background-color: #f8fafc !important;
-                border: 1px solid #cbd5e1 !important;
+                background-color: rgba(14, 61, 129, 0.05) !important;
+                border: 1px solid rgba(14, 61, 129, 0.15) !important;
             }
 
             .cost-amount {
-                color: #000000 !important;
+                color: #15803d !important;
                 font-weight: bold;
                 font-size: 18pt;
             }
@@ -462,7 +470,7 @@
 </head>
 <body>
 
-    <!-- Floating header controls -->
+    <!-- Floating actions -->
     <div class="action-header">
         <a href="javascript:window.close();" class="btn btn-close">
             <i class="fas fa-times"></i> Close Slip
@@ -550,7 +558,7 @@
 
         <hr class="divider">
 
-        <!-- Grand Total Banner -->
+        <!-- Grand Total -->
         <div class="cost-section">
             <div class="cost-label">Total Verified Amount</div>
             <div class="cost-amount">${{ number_format($paymentProof->amount_paid, 2) }}</div>
@@ -564,7 +572,7 @@
             
             <div class="security-details">
                 <h4 class="security-title"><i class="fa-solid fa-shield-halved"></i> Audited Voucher</h4>
-                Scan the QR code to confirm credentials and authenticate transaction against the GMC database registry.
+                Scan QR code to authenticate transaction against database register.
             </div>
         </div>
 
@@ -590,7 +598,7 @@
         </div>
     </div>
 
-    <!-- Theme State Script -->
+    <!-- Active Window Script -->
     <script>
         if (window.opener && window.opener.document.documentElement.classList.contains('dark')) {
             document.documentElement.classList.add('dark-theme');
