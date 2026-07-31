@@ -61,6 +61,7 @@
     
     <!-- FontAwesome v6 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <title>GMC Session Admin Panel</title>
 
@@ -148,6 +149,12 @@
                    class="group flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'settings' ? 'bg-blue-50/70 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400 font-bold border-l-4 border-gmcBlue' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white' }}">
                     <i class="fa-solid fa-gears mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'settings' ? 'text-gmcBlue dark:text-blue-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300' }}"></i>
                     Account Settings
+                </a>
+
+                <a href="{{ route('website-content.hero.edit') }}"
+                   class="group flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'website_content' ? 'bg-blue-50/70 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400 font-bold border-l-4 border-gmcBlue' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white' }}">
+                    <i class="fa-solid fa-window-maximize mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'website_content' ? 'text-gmcBlue dark:text-blue-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300' }}"></i>
+                    Website Content
                 </a>
 
                 <!-- Link: Employee Control -->
@@ -260,6 +267,52 @@
                 // Dispatch window event so that any charts on page re-render with the correct theme colors!
                 window.dispatchEvent(new Event('theme-changed'));
             });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const isDarkMode = document.documentElement.classList.contains('dark');
+
+            const swalTheme = {
+                background: isDarkMode ? '#0f172a' : '#ffffff',
+                color: isDarkMode ? '#e2e8f0' : '#0f172a',
+                confirmButtonColor: '#0e3d81',
+                customClass: {
+                    popup: 'rounded-[22px]',
+                    confirmButton: 'rounded-xl px-5 py-3 font-bold',
+                },
+            };
+
+            @if (session('success'))
+                Swal.fire({
+                    ...swalTheme,
+                    icon: 'success',
+                    title: 'Saved successfully',
+                    text: @json(session('success')),
+                    timer: 2400,
+                    showConfirmButton: false,
+                });
+            @endif
+
+            @if (session('error'))
+                Swal.fire({
+                    ...swalTheme,
+                    icon: 'error',
+                    title: 'Something went wrong',
+                    text: @json(session('error')),
+                });
+            @endif
+
+            @if ($errors->any())
+                Swal.fire({
+                    ...swalTheme,
+                    icon: 'warning',
+                    title: 'Please review the form',
+                    html: `{!! collect($errors->all())->map(fn ($error) => '<div style="margin:6px 0;text-align:left;">• ' . e($error) . '</div>')->implode('') !!}`,
+                    confirmButtonText: 'Review fields',
+                });
+            @endif
         });
     </script>
 

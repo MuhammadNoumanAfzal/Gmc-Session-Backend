@@ -76,6 +76,17 @@
                                     <i class="fa-solid fa-key text-gmcGold mr-2"></i>
                                     Security Credentials
                                 </h4>
+
+                                <div class="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs leading-6 text-amber-800 dark:border-amber-900/40 dark:bg-amber-950/20 dark:text-amber-300">
+                                    To protect this trusted account, enter your current password whenever you change the email address or set a new password.
+                                </div>
+
+                                <div class="space-y-1">
+                                    <label for="current_password" class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Current Password</label>
+                                    <input id="current_password" name="current_password" type="password" 
+                                           class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:border-gmcBlue dark:focus:border-blue-500 text-slate-805 dark:text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-4 focus:ring-gmcBlue/10 dark:focus:ring-blue-500/10 transition placeholder-slate-300 dark:placeholder-slate-700" 
+                                           placeholder="Required for email or password changes">
+                                </div>
                                 
                                 <div class="space-y-1">
                                     <label for="password" class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">New Password</label>
@@ -95,7 +106,7 @@
                         </div>
 
                         <div class="pt-4 flex justify-between items-center border-t border-slate-100 dark:border-slate-850">
-                            <a href="{{ route('payment-proofs.index') }}" class="inline-flex items-center text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-350 transition-colors">
+                            <a href="{{ route(auth()->user()->role === 'owner' ? 'admin.dashboard' : 'payment-proofs.index') }}" class="inline-flex items-center text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-350 transition-colors">
                                 <i class="fa-solid fa-arrow-left mr-2"></i>
                                 Back to Panel
                             </a>

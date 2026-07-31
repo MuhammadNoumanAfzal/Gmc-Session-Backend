@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\HeroSectionController;
 use App\Http\Controllers\Api\PaymentProofController;
 
 /*
@@ -19,4 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/content/hero', [HeroSectionController::class, 'show']);
 Route::post('/payment-proofs', [PaymentProofController::class, 'store']);

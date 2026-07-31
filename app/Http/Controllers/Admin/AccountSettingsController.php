@@ -30,10 +30,13 @@ class AccountSettingsController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
+        $isChangingEmail = $request->email !== $user->email;
+        $isChangingPassword = $request->filled('password');
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'current_password' => [($isChangingEmail || $isChangingPassword) ? 'required' : 'nullable', 'current_password'],
             'password' => ['nullable', 'string', 'min:6', 'confirmed'],
         ]);
 
@@ -45,7 +48,9 @@ class AccountSettingsController extends Controller
         }
 
         $user->save();
+        Auth::login($user);
+        $request->session()->regenerate();
 
-        return redirect()->route('settings.index')->with('success', 'Profile settings updated successfully!');
+        return redirect()->route('settings.index')->with('success', 'Profile settings updated successfully. Your session stayed active.');
     }
 }

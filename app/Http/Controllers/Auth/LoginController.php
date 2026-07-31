@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Lockout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
@@ -25,6 +28,8 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
+        $this->ensureIsNotRateLimited($request);
+
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -32,13 +37,16 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
             $request->session()->regenerate();
-            
+            RateLimiter::clear($this->throttleKey($request));
+
             $user = Auth::user();
             return $this->redirectBasedOnRole($user);
         }
 
+        RateLimiter::hit($this->throttleKey($request), 60);
+
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'The email or password you entered is incorrect. Please try again.',
         ])->onlyInput('email');
     }
 
@@ -64,5 +72,26 @@ class LoginController extends Controller
             return redirect()->intended('admin/dashboard');
         }
         return redirect()->intended('admin/payment-proofs/index');
+    }
+
+    private function ensureIsNotRateLimited(Request $request): void
+    {
+        if (! RateLimiter::tooManyAttempts($this->throttleKey($request), 5)) {
+            return;
+        }
+
+        event(new Lockout($request));
+
+        $seconds = RateLimiter::availableIn($this->throttleKey($request));
+        $minutes = (int) ceil($seconds / 60);
+
+        throw ValidationException::withMessages([
+            'email' => "Too many login attempts. Please wait {$minutes} minute(s) and try again.",
+        ]);
+    }
+
+    private function throttleKey(Request $request): string
+    {
+        return Str::lower($request->string('email')).'|'.$request->ip();
     }
 }

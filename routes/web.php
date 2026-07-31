@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\PaymentProofController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\AccountSettingsController;
@@ -69,6 +70,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('employees/edit/{id}', [EmployeeController::class, 'edit'])->name('employees.edit');
         Route::post('employees/update', [EmployeeController::class, 'update'])->name('employees.update');
         Route::get('employees/destroy/{id}', [EmployeeController::class, 'destroy'])->name('employees.destroy');
+
+        Route::get('website-content/hero', [HeroSectionController::class, 'edit'])->name('website-content.hero.edit');
+        Route::post('website-content/hero', [HeroSectionController::class, 'update'])->name('website-content.hero.update');
     });
 
     // === Permission-Guarded Application Modules ===
