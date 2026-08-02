@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\GuaranteeSectionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HeroSectionController;
@@ -82,6 +83,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::post('website-content/strategy-ribbon', [StrategyRibbonSectionController::class, 'update'])->name('website-content.strategy-ribbon.update');
         Route::get('website-content/mentor-trust', [MentorTrustSectionController::class, 'edit'])->name('website-content.mentor-trust.edit');
         Route::post('website-content/mentor-trust', [MentorTrustSectionController::class, 'update'])->name('website-content.mentor-trust.update');
+        Route::get('website-content/guarantee', [GuaranteeSectionController::class, 'edit'])->name('website-content.guarantee.edit');
+        Route::post('website-content/guarantee', [GuaranteeSectionController::class, 'update'])->name('website-content.guarantee.update');
     });
 
     // === Permission-Guarded Application Modules ===

@@ -180,6 +180,10 @@
                            class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.mentor-trust.*') ? 'bg-blue-50 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
                             Mentor Section
                         </a>
+                        <a href="{{ route('website-content.guarantee.edit') }}"
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.guarantee.*') ? 'bg-blue-50 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                            Guarantee Section
+                        </a>
                     </div>
                 </div>
 
