@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StrategyRibbonSectionSeeder::class);
         $this->call(MentorTrustSectionSeeder::class);
         $this->call(GuaranteeSectionSeeder::class);
+        $this->call(MediaProofSectionSeeder::class);
         $this->call(PaymentProofSeeder::class);
     }
 }
