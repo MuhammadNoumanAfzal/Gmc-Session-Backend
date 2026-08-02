@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\GuaranteeSectionController;
+use App\Http\Controllers\Api\FaqSectionController;
 use App\Http\Controllers\Api\HeroSectionController;
 use App\Http\Controllers\Api\MediaProofSectionController;
 use App\Http\Controllers\Api\MentorTrustSectionController;
@@ -31,6 +32,7 @@ Route::get('/content/scholarship-solution', [ScholarshipSolutionSectionControlle
 Route::get('/content/strategy-ribbon', [StrategyRibbonSectionController::class, 'show']);
 Route::get('/content/mentor-trust', [MentorTrustSectionController::class, 'show']);
 Route::get('/content/guarantee', [GuaranteeSectionController::class, 'show']);
+Route::get('/content/faq', [FaqSectionController::class, 'show']);
 Route::get('/content/media-proof', [MediaProofSectionController::class, 'show']);
 Route::get('/content/session-audience', [SessionAudienceSectionController::class, 'show']);
 Route::post('/payment-proofs', [PaymentProofController::class, 'store']);
