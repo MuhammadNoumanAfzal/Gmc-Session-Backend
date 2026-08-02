@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HeroSectionController;
+use App\Http\Controllers\Admin\MentorTrustSectionController;
+use App\Http\Controllers\Admin\ScholarshipSolutionSectionController;
+use App\Http\Controllers\Admin\StrategyRibbonSectionController;
 use App\Http\Controllers\Admin\PaymentProofController;
 use App\Http\Controllers\Admin\SizeController;
 use App\Http\Controllers\Admin\AccountSettingsController;
@@ -73,6 +76,12 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
         Route::get('website-content/hero', [HeroSectionController::class, 'edit'])->name('website-content.hero.edit');
         Route::post('website-content/hero', [HeroSectionController::class, 'update'])->name('website-content.hero.update');
+        Route::get('website-content/scholarship-solution', [ScholarshipSolutionSectionController::class, 'edit'])->name('website-content.scholarship-solution.edit');
+        Route::post('website-content/scholarship-solution', [ScholarshipSolutionSectionController::class, 'update'])->name('website-content.scholarship-solution.update');
+        Route::get('website-content/strategy-ribbon', [StrategyRibbonSectionController::class, 'edit'])->name('website-content.strategy-ribbon.edit');
+        Route::post('website-content/strategy-ribbon', [StrategyRibbonSectionController::class, 'update'])->name('website-content.strategy-ribbon.update');
+        Route::get('website-content/mentor-trust', [MentorTrustSectionController::class, 'edit'])->name('website-content.mentor-trust.edit');
+        Route::post('website-content/mentor-trust', [MentorTrustSectionController::class, 'update'])->name('website-content.mentor-trust.update');
     });
 
     // === Permission-Guarded Application Modules ===

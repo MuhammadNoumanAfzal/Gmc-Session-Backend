@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
         SystemUserProvisioner::ensureDefaultUsersExist();
 
         $this->call(HeroSectionSeeder::class);
+        $this->call(ScholarshipSolutionSectionSeeder::class);
+        $this->call(StrategyRibbonSectionSeeder::class);
+        $this->call(MentorTrustSectionSeeder::class);
         $this->call(PaymentProofSeeder::class);
     }
 }

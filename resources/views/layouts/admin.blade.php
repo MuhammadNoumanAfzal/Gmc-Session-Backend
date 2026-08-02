@@ -151,11 +151,37 @@
                     Account Settings
                 </a>
 
-                <a href="{{ route('website-content.hero.edit') }}"
-                   class="group flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'website_content' ? 'bg-blue-50/70 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400 font-bold border-l-4 border-gmcBlue' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white' }}">
-                    <i class="fa-solid fa-window-maximize mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'website_content' ? 'text-gmcBlue dark:text-blue-400' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300' }}"></i>
-                    Website Content
-                </a>
+                @php
+                    $isWebsiteContentRoute = request()->routeIs('website-content.*');
+                @endphp
+
+                <div class="rounded-2xl border border-slate-200/70 bg-slate-50/70 p-2 transition-colors dark:border-slate-800 dark:bg-slate-950/30">
+                    <div class="flex items-center px-2 py-2">
+                        <div class="flex items-center text-sm font-semibold {{ $isWebsiteContentRoute ? 'text-gmcBlue dark:text-blue-400' : 'text-slate-600 dark:text-slate-300' }}">
+                            <i class="fa-solid fa-window-maximize mr-3 text-base {{ $isWebsiteContentRoute ? 'text-gmcBlue dark:text-blue-400' : 'text-slate-400 dark:text-slate-500' }}"></i>
+                            Website Content
+                        </div>
+                    </div>
+
+                    <div class="mt-1 space-y-1">
+                        <a href="{{ route('website-content.hero.edit') }}"
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.hero.*') ? 'bg-blue-50 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                            Hero Section
+                        </a>
+                        <a href="{{ route('website-content.scholarship-solution.edit') }}"
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.scholarship-solution.*') ? 'bg-blue-50 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                            Section Below Hero
+                        </a>
+                        <a href="{{ route('website-content.strategy-ribbon.edit') }}"
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.strategy-ribbon.*') ? 'bg-blue-50 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                            Strategy Ribbon
+                        </a>
+                        <a href="{{ route('website-content.mentor-trust.edit') }}"
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.mentor-trust.*') ? 'bg-blue-50 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                            Mentor Section
+                        </a>
+                    </div>
+                </div>
 
                 <!-- Link: Employee Control -->
                 <a href="{{ url('admin/employees') }}" 

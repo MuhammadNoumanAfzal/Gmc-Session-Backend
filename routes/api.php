@@ -3,7 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\HeroSectionController;
+use App\Http\Controllers\Api\MentorTrustSectionController;
 use App\Http\Controllers\Api\PaymentProofController;
+use App\Http\Controllers\Api\ScholarshipSolutionSectionController;
+use App\Http\Controllers\Api\StrategyRibbonSectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/content/hero', [HeroSectionController::class, 'show']);
+Route::get('/content/scholarship-solution', [ScholarshipSolutionSectionController::class, 'show']);
+Route::get('/content/strategy-ribbon', [StrategyRibbonSectionController::class, 'show']);
+Route::get('/content/mentor-trust', [MentorTrustSectionController::class, 'show']);
 Route::post('/payment-proofs', [PaymentProofController::class, 'store']);
