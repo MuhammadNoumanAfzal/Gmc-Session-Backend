@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\HeroSectionController;
 use App\Http\Controllers\Admin\MediaProofSectionController;
 use App\Http\Controllers\Admin\MentorTrustSectionController;
 use App\Http\Controllers\Admin\ScholarshipSolutionSectionController;
+use App\Http\Controllers\Admin\SessionAudienceSectionController;
 use App\Http\Controllers\Admin\StrategyRibbonSectionController;
 use App\Http\Controllers\Admin\PaymentProofController;
 use App\Http\Controllers\Admin\SizeController;
@@ -88,6 +89,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::post('website-content/guarantee', [GuaranteeSectionController::class, 'update'])->name('website-content.guarantee.update');
         Route::get('website-content/media-proof', [MediaProofSectionController::class, 'edit'])->name('website-content.media-proof.edit');
         Route::post('website-content/media-proof', [MediaProofSectionController::class, 'update'])->name('website-content.media-proof.update');
+        Route::get('website-content/session-audience', [SessionAudienceSectionController::class, 'edit'])->name('website-content.session-audience.edit');
+        Route::post('website-content/session-audience', [SessionAudienceSectionController::class, 'update'])->name('website-content.session-audience.update');
     });
 
     // === Permission-Guarded Application Modules ===

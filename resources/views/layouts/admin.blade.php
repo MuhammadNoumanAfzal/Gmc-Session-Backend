@@ -188,6 +188,10 @@
                            class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.media-proof.*') ? 'bg-blue-50 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
                             Media Proof Section
                         </a>
+                        <a href="{{ route('website-content.session-audience.edit') }}"
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.session-audience.*') ? 'bg-blue-50 text-gmcBlue dark:bg-blue-950/20 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                            Session Audience Section
+                        </a>
                     </div>
                 </div>
 

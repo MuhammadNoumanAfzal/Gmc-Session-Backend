@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\MediaProofSectionController;
 use App\Http\Controllers\Api\MentorTrustSectionController;
 use App\Http\Controllers\Api\PaymentProofController;
 use App\Http\Controllers\Api\ScholarshipSolutionSectionController;
+use App\Http\Controllers\Api\SessionAudienceSectionController;
 use App\Http\Controllers\Api\StrategyRibbonSectionController;
 
 /*
@@ -31,4 +32,5 @@ Route::get('/content/strategy-ribbon', [StrategyRibbonSectionController::class, 
 Route::get('/content/mentor-trust', [MentorTrustSectionController::class, 'show']);
 Route::get('/content/guarantee', [GuaranteeSectionController::class, 'show']);
 Route::get('/content/media-proof', [MediaProofSectionController::class, 'show']);
+Route::get('/content/session-audience', [SessionAudienceSectionController::class, 'show']);
 Route::post('/payment-proofs', [PaymentProofController::class, 'store']);
