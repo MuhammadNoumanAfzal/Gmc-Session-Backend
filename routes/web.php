@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\GuaranteeSectionController;
+use App\Http\Controllers\Admin\EnrollmentFlowSectionController;
 use App\Http\Controllers\Admin\FaqSectionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -88,6 +89,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::post('website-content/mentor-trust', [MentorTrustSectionController::class, 'update'])->name('website-content.mentor-trust.update');
         Route::get('website-content/guarantee', [GuaranteeSectionController::class, 'edit'])->name('website-content.guarantee.edit');
         Route::post('website-content/guarantee', [GuaranteeSectionController::class, 'update'])->name('website-content.guarantee.update');
+        Route::get('website-content/enrollment-flow', [EnrollmentFlowSectionController::class, 'edit'])->name('website-content.enrollment-flow.edit');
+        Route::post('website-content/enrollment-flow', [EnrollmentFlowSectionController::class, 'update'])->name('website-content.enrollment-flow.update');
         Route::get('website-content/faq', [FaqSectionController::class, 'edit'])->name('website-content.faq.edit');
         Route::post('website-content/faq', [FaqSectionController::class, 'update'])->name('website-content.faq.update');
         Route::get('website-content/media-proof', [MediaProofSectionController::class, 'edit'])->name('website-content.media-proof.edit');
