@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-80 bg-[radial-gradient(circle_at_top_left,rgba(139,92,246,0.20),transparent_42%),radial-gradient(circle_at_top_right,rgba(192,132,252,0.14),transparent_28%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(139,92,246,0.24),transparent_42%),radial-gradient(circle_at_top_right,rgba(192,132,252,0.18),transparent_28%)]"></div>
-
     <!-- Statistics Cards Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 animate-fade-in">
         

@@ -91,16 +91,18 @@
             background: #8b5cf6;
         }
         body {
-            background-image:
-                radial-gradient(circle at top left, rgba(139, 92, 246, 0.10), transparent 32%),
-                radial-gradient(circle at 82% 18%, rgba(192, 132, 252, 0.10), transparent 24%),
-                linear-gradient(180deg, rgba(248, 245, 255, 0.92) 0%, rgba(255, 255, 255, 1) 48%);
+            background:
+                radial-gradient(circle at top left, rgba(139, 92, 246, 0.10), transparent 34%),
+                radial-gradient(circle at 85% 14%, rgba(192, 132, 252, 0.08), transparent 26%),
+                linear-gradient(180deg, #faf7ff 0%, #f6f1ff 26%, #ffffff 100%);
+            background-attachment: fixed;
         }
         .dark body {
-            background-image:
-                radial-gradient(circle at top left, rgba(139, 92, 246, 0.28), transparent 34%),
-                radial-gradient(circle at 80% 20%, rgba(192, 132, 252, 0.16), transparent 28%),
-                linear-gradient(180deg, rgba(28, 20, 48, 0.94) 0%, rgba(9, 6, 17, 1) 56%);
+            background:
+                radial-gradient(circle at top left, rgba(139, 92, 246, 0.18), transparent 30%),
+                radial-gradient(circle at 78% 10%, rgba(192, 132, 252, 0.10), transparent 22%),
+                linear-gradient(180deg, #1a1330 0%, #140f24 24%, #110c1f 58%, #0d0918 100%);
+            background-attachment: fixed;
         }
 
         .admin-glow {
@@ -179,12 +181,12 @@
         }
 
         .admin-topbar {
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.90);
             box-shadow: 0 10px 30px rgba(76, 29, 149, 0.06);
         }
 
         .dark .admin-topbar {
-            background: rgba(18, 13, 32, 0.72);
+            background: rgba(24, 18, 43, 0.82);
             box-shadow: none;
         }
 
@@ -255,13 +257,13 @@
 
     @yield('style')
 </head>
-<body class="h-full font-sans antialiased text-slate-800 dark:text-slate-100 bg-slate-50 dark:bg-slate-950 transition-colors duration-200">
+<body class="h-full bg-transparent font-sans antialiased text-slate-800 transition-colors duration-200 dark:text-slate-100">
 
     <!-- Main Wrapper -->
     <div class="min-h-full">
         
         <!-- Sidebar Navigation Panel (Responsive, Light & Dark Theme) -->
-        <aside class="admin-sidebar-sheen fixed inset-y-0 left-0 z-30 flex w-64 flex-col border-r border-slate-200 bg-white/92 transition-colors duration-200 dark:bg-slate-900/90 dark:border-violet-500/10">
+        <aside class="admin-sidebar-sheen fixed inset-y-0 left-0 z-30 flex w-64 flex-col border-r border-slate-200 bg-white/92 transition-colors duration-200 dark:bg-[#171127]/92 dark:border-violet-500/10">
             <!-- Brand Header -->
             <div class="h-16 flex items-center border-b border-slate-100 bg-white/90 px-6 transition-colors duration-200 dark:border-violet-500/10 dark:bg-transparent">
                 <a href="{{ url('admin/dashboard') }}" class="flex items-center space-x-2.5">
@@ -437,7 +439,7 @@
         </header>
         
         <!-- Content Container -->
-        <main class="min-h-screen pl-64 bg-slate-50 transition-colors duration-200 dark:bg-transparent">
+        <main class="min-h-screen pl-64 bg-transparent transition-colors duration-200">
             <div class="pt-20 px-8 pb-12 max-w-[1600px] mx-auto">
                 
                 <!-- Dynamic Page Header -->
