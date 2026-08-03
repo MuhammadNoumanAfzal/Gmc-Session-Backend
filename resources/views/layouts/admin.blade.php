@@ -203,26 +203,45 @@
         .admin-content-link {
             position: relative;
             margin-left: 0.75rem;
-            padding-left: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding-left: 1rem;
         }
 
-        .admin-content-link::before {
-            content: '';
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            width: 0.45rem;
-            height: 0.45rem;
-            border-radius: 999px;
-            transform: translateY(-50%);
-            background: rgba(139, 92, 246, 0.26);
-            transition: transform 180ms ease, background-color 180ms ease;
+        .admin-content-link-icon {
+            display: inline-flex;
+            height: 1.75rem;
+            width: 1.75rem;
+            flex: 0 0 1.75rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.8rem;
+            background: rgba(139, 92, 246, 0.10);
+            color: rgba(139, 92, 246, 0.92);
+            transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
         }
 
-        .admin-content-link:hover::before,
-        .admin-content-link.is-active::before {
-            transform: translateY(-50%) scale(1.2);
-            background: rgba(139, 92, 246, 0.9);
+        .dark .admin-content-link-icon {
+            background: rgba(255, 255, 255, 0.06);
+            color: #c4b5fd;
+        }
+
+        .admin-content-link:hover .admin-content-link-icon,
+        .admin-content-link.is-active .admin-content-link-icon {
+            transform: scale(1.05);
+            background: rgba(139, 92, 246, 0.18);
+            color: rgba(109, 40, 217, 0.98);
+        }
+
+        .dark .admin-content-link:hover .admin-content-link-icon,
+        .dark .admin-content-link.is-active .admin-content-link-icon {
+            background: rgba(255, 255, 255, 0.10);
+            color: #ede9fe;
+        }
+
+        .admin-content-link-label {
+            min-width: 0;
         }
 
         .dark .admin-panel input,
@@ -379,39 +398,48 @@
                         <div class="admin-accordion-panel-inner mt-1.5 space-y-1">
                         <a href="{{ route('website-content.hero.edit') }}"
                            class="admin-content-link {{ request()->routeIs('website-content.hero.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
-                            Hero Section
+                            <span class="admin-content-link-icon"><i class="fa-solid fa-sparkles text-xs"></i></span>
+                            <span class="admin-content-link-label truncate">Hero Section</span>
                         </a>
                         <a href="{{ route('website-content.scholarship-solution.edit') }}"
                            class="admin-content-link {{ request()->routeIs('website-content.scholarship-solution.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
-                            Section Below Hero
+                            <span class="admin-content-link-icon"><i class="fa-solid fa-layer-group text-xs"></i></span>
+                            <span class="admin-content-link-label truncate">Section Below Hero</span>
                         </a>
                         <a href="{{ route('website-content.strategy-ribbon.edit') }}"
                            class="admin-content-link {{ request()->routeIs('website-content.strategy-ribbon.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
-                            Strategy Ribbon
+                            <span class="admin-content-link-icon"><i class="fa-solid fa-wave-square text-xs"></i></span>
+                            <span class="admin-content-link-label truncate">Strategy Ribbon</span>
                         </a>
                         <a href="{{ route('website-content.mentor-trust.edit') }}"
                            class="admin-content-link {{ request()->routeIs('website-content.mentor-trust.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
-                            Mentor Section
+                            <span class="admin-content-link-icon"><i class="fa-solid fa-user-tie text-xs"></i></span>
+                            <span class="admin-content-link-label truncate">Mentor Section</span>
                         </a>
                         <a href="{{ route('website-content.guarantee.edit') }}"
                            class="admin-content-link {{ request()->routeIs('website-content.guarantee.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
-                            Guarantee Section
+                            <span class="admin-content-link-icon"><i class="fa-solid fa-shield-heart text-xs"></i></span>
+                            <span class="admin-content-link-label truncate">Guarantee Section</span>
                         </a>
                         <a href="{{ route('website-content.enrollment-flow.edit') }}"
                            class="admin-content-link {{ request()->routeIs('website-content.enrollment-flow.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
-                            Enrollment Flow
+                            <span class="admin-content-link-icon"><i class="fa-solid fa-route text-xs"></i></span>
+                            <span class="admin-content-link-label truncate">Enrollment Flow</span>
                         </a>
                         <a href="{{ route('website-content.faq.edit') }}"
                            class="admin-content-link {{ request()->routeIs('website-content.faq.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
-                            FAQ Section
+                            <span class="admin-content-link-icon"><i class="fa-solid fa-circle-question text-xs"></i></span>
+                            <span class="admin-content-link-label truncate">FAQ Section</span>
                         </a>
                         <a href="{{ route('website-content.media-proof.edit') }}"
                            class="admin-content-link {{ request()->routeIs('website-content.media-proof.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
-                            Media Proof Section
+                            <span class="admin-content-link-icon"><i class="fa-solid fa-photo-film text-xs"></i></span>
+                            <span class="admin-content-link-label truncate">Media Proof Section</span>
                         </a>
                         <a href="{{ route('website-content.session-audience.edit') }}"
                            class="admin-content-link {{ request()->routeIs('website-content.session-audience.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
-                            Session Audience Section
+                            <span class="admin-content-link-icon"><i class="fa-solid fa-users-viewfinder text-xs"></i></span>
+                            <span class="admin-content-link-label truncate">Session Audience Section</span>
                         </a>
                         </div>
                     </div>
