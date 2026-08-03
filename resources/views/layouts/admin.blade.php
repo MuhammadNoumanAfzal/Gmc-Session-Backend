@@ -178,6 +178,26 @@
             transform: rotate(180deg);
         }
 
+        .admin-topbar {
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 10px 30px rgba(76, 29, 149, 0.06);
+        }
+
+        .dark .admin-topbar {
+            background: rgba(18, 13, 32, 0.72);
+            box-shadow: none;
+        }
+
+        .admin-user-chip {
+            background: rgba(255, 255, 255, 0.76);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+        }
+
+        .dark .admin-user-chip {
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
         .admin-content-link {
             position: relative;
             margin-left: 0.75rem;
@@ -382,12 +402,12 @@
         </aside>
         
         <!-- Top Navbar Header -->
-        <header class="fixed top-0 right-0 left-64 z-20 flex h-16 items-center justify-between border-b border-slate-200 bg-white/75 px-8 backdrop-blur-md transition-colors duration-200 dark:border-violet-500/10 dark:bg-[#120d20]/72">
+        <header class="admin-topbar fixed top-0 right-0 left-64 z-20 flex h-16 items-center justify-between border-b border-violet-100/80 px-8 backdrop-blur-md transition-colors duration-200 dark:border-violet-500/10">
             <!-- Left Header: Breadcrumbs -->
             <div class="flex items-center space-x-2 text-sm">
-                <a href="{{ url('admin/dashboard') }}" class="text-slate-400 hover:text-gmcBlue dark:hover:text-violet-200 transition-colors font-medium">Home</a>
+                <a href="{{ url('admin/dashboard') }}" class="text-slate-500 hover:text-gmcBlue dark:text-slate-400 dark:hover:text-violet-200 transition-colors font-semibold">Home</a>
                 <span class="text-slate-300 dark:text-slate-700">/</span>
-                <span class="text-slate-700 dark:text-slate-300 font-semibold">{{ $heading }}</span>
+                <span class="text-gmcBlue dark:text-slate-200 font-semibold">{{ $heading }}</span>
             </div>
             
             <!-- Right Header: User Actions + Theme Toggle -->
@@ -399,13 +419,18 @@
                     <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-base hidden text-amber-500"></i>
                 </button>
                 
-                <div class="text-right hidden sm:block">
-                    <span class="block text-xs font-bold text-slate-800 dark:text-slate-200">{{ auth()->user()->name }}</span>
-                    <span class="block text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
-                        {{ auth()->user()->role === 'owner' ? 'System Owner' : 'Revenue Officer' }}
-                    </span>
+                <div class="admin-user-chip hidden items-center gap-3 rounded-2xl border border-violet-100/80 px-4 py-2 text-right sm:flex dark:border-violet-500/10">
+                    <div>
+                        <span class="block text-xs font-bold text-slate-800 dark:text-slate-200">{{ auth()->user()->name }}</span>
+                        <span class="block text-[10px] text-gmcBlue dark:text-violet-300 font-bold uppercase tracking-wider">
+                            {{ auth()->user()->role === 'owner' ? 'System Owner' : 'Revenue Officer' }}
+                        </span>
+                    </div>
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 text-slate-650 font-bold dark:border-violet-500/10 dark:bg-white/[0.04] dark:text-violet-100">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
                 </div>
-                <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 text-slate-650 font-bold dark:border-violet-500/10 dark:bg-white/[0.04] dark:text-violet-100">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 text-slate-650 font-bold sm:hidden dark:border-violet-500/10 dark:bg-white/[0.04] dark:text-violet-100">
                     <i class="fa-solid fa-user-shield"></i>
                 </div>
             </div>
