@@ -139,6 +139,70 @@
             background: rgba(139, 92, 246, 0.12);
         }
 
+        .admin-nav-link {
+            min-height: 52px;
+            justify-content: flex-start;
+        }
+
+        .admin-nav-link i {
+            width: 1.25rem;
+            text-align: center;
+        }
+
+        .admin-accordion-trigger {
+            min-height: 52px;
+        }
+
+        .admin-accordion-panel {
+            overflow: hidden;
+            transition: grid-template-rows 220ms ease, opacity 220ms ease;
+            display: grid;
+            grid-template-rows: 0fr;
+            opacity: 0;
+        }
+
+        .admin-accordion-panel[data-open="true"] {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+
+        .admin-accordion-panel-inner {
+            min-height: 0;
+        }
+
+        .admin-accordion-chevron {
+            transition: transform 220ms ease, color 220ms ease;
+        }
+
+        .admin-accordion-trigger[aria-expanded="true"] .admin-accordion-chevron {
+            transform: rotate(180deg);
+        }
+
+        .admin-content-link {
+            position: relative;
+            margin-left: 0.75rem;
+            padding-left: 2.5rem;
+        }
+
+        .admin-content-link::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 999px;
+            transform: translateY(-50%);
+            background: rgba(139, 92, 246, 0.26);
+            transition: transform 180ms ease, background-color 180ms ease;
+        }
+
+        .admin-content-link:hover::before,
+        .admin-content-link.is-active::before {
+            transform: translateY(-50%) scale(1.2);
+            background: rgba(139, 92, 246, 0.9);
+        }
+
         /* Global dark-mode recolor so existing admin blue utilities inherit the purple theme */
         .dark .dark\:text-blue-400,
         .dark .dark\:hover\:text-blue-400:hover,
@@ -196,7 +260,7 @@
                 @if(auth()->user()->hasPermission('dashboard'))
                 <!-- Link: Dashboard -->
                 <a href="{{ url('admin/dashboard') }}" 
-                   class="group admin-subtle-link flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'dashboard' ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}">
+                   class="group admin-nav-link admin-subtle-link flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'dashboard' ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}">
                     <i class="fa-solid fa-chart-pie mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'dashboard' ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-violet-200' }}"></i>
                     Dashboard
                 </a>
@@ -205,25 +269,16 @@
                 @if(auth()->user()->hasPermission('proofs'))
                 <!-- Link: Payment Proofs -->
                 <a href="{{ url('admin/payment-proofs/index') }}" 
-                   class="group admin-subtle-link flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'payment_proofs' ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}">
+                   class="group admin-nav-link admin-subtle-link flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'payment_proofs' ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}">
                     <i class="fa-solid fa-file-invoice-dollar mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'payment_proofs' ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-violet-200' }}"></i>
                     Payment Proofs
-                </a>
-                @endif
-                
-                @if(auth()->user()->hasPermission('sizes'))
-                <!-- Link: Sizes -->
-                <a href="{{ url('admin/size/index') }}" 
-                   class="group admin-subtle-link flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'size' ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}">
-                    <i class="fa-solid fa-ruler-combined mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'size' ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-violet-200' }}"></i>
-                    Size Parameters
                 </a>
                 @endif
 
                 @if(auth()->user()->role === 'owner')
                 <!-- Link: Account Settings -->
                 <a href="{{ url('admin/settings') }}" 
-                   class="group admin-subtle-link flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'settings' ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}">
+                   class="group admin-nav-link admin-subtle-link flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'settings' ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}">
                     <i class="fa-solid fa-gears mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'settings' ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-violet-200' }}"></i>
                     Account Settings
                 </a>
@@ -232,57 +287,73 @@
                     $isWebsiteContentRoute = request()->routeIs('website-content.*');
                 @endphp
 
-                <div class="rounded-2xl border border-slate-200/70 bg-slate-50/70 p-2 transition-colors dark:border-violet-500/10 dark:bg-white/[0.03]">
-                    <div class="flex items-center px-2 py-2">
-                        <div class="flex items-center text-sm font-semibold {{ $isWebsiteContentRoute ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-600 dark:text-slate-300' }}">
-                            <i class="fa-solid fa-window-maximize mr-3 text-base {{ $isWebsiteContentRoute ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-400 dark:text-slate-500' }}"></i>
-                            Website Content
-                        </div>
-                    </div>
+                <div class="transition-colors">
+                    <button
+                        type="button"
+                        class="admin-accordion-trigger group admin-subtle-link flex w-full items-center justify-between rounded-xl px-3.5 py-3 text-left text-sm font-medium transition-all duration-150 {{ $isWebsiteContentRoute ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}"
+                        data-sidebar-toggle="website-content"
+                        aria-expanded="{{ $isWebsiteContentRoute ? 'true' : 'false' }}"
+                        aria-controls="sidebar-website-content"
+                    >
+                        <span class="flex min-w-0 items-center">
+                            <i class="fa-solid fa-window-maximize mr-3 text-lg transition-transform group-hover:scale-110 {{ $isWebsiteContentRoute ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-violet-200' }}"></i>
+                            <span class="truncate">Website Content</span>
+                        </span>
+                        <span class="flex items-center gap-2 pl-3">
+                            <span class="rounded-full bg-violet-100 px-2 py-0.5 text-[10px] font-bold text-violet-700 dark:bg-violet-500/15 dark:text-violet-200">9</span>
+                            <i class="admin-accordion-chevron fa-solid fa-chevron-down text-xs {{ $isWebsiteContentRoute ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-400 dark:text-slate-500' }}"></i>
+                        </span>
+                    </button>
 
-                    <div class="mt-1 space-y-1">
+                    <div
+                        id="sidebar-website-content"
+                        class="admin-accordion-panel"
+                        data-open="{{ $isWebsiteContentRoute ? 'true' : 'false' }}"
+                    >
+                        <div class="admin-accordion-panel-inner mt-1.5 space-y-1">
                         <a href="{{ route('website-content.hero.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.hero.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="admin-content-link {{ request()->routeIs('website-content.hero.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
                             Hero Section
                         </a>
                         <a href="{{ route('website-content.scholarship-solution.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.scholarship-solution.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="admin-content-link {{ request()->routeIs('website-content.scholarship-solution.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
                             Section Below Hero
                         </a>
                         <a href="{{ route('website-content.strategy-ribbon.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.strategy-ribbon.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="admin-content-link {{ request()->routeIs('website-content.strategy-ribbon.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
                             Strategy Ribbon
                         </a>
                         <a href="{{ route('website-content.mentor-trust.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.mentor-trust.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="admin-content-link {{ request()->routeIs('website-content.mentor-trust.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
                             Mentor Section
                         </a>
                         <a href="{{ route('website-content.guarantee.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.guarantee.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="admin-content-link {{ request()->routeIs('website-content.guarantee.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
                             Guarantee Section
                         </a>
                         <a href="{{ route('website-content.enrollment-flow.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.enrollment-flow.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="admin-content-link {{ request()->routeIs('website-content.enrollment-flow.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
                             Enrollment Flow
                         </a>
                         <a href="{{ route('website-content.faq.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.faq.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="admin-content-link {{ request()->routeIs('website-content.faq.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
                             FAQ Section
                         </a>
                         <a href="{{ route('website-content.media-proof.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.media-proof.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="admin-content-link {{ request()->routeIs('website-content.media-proof.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
                             Media Proof Section
                         </a>
                         <a href="{{ route('website-content.session-audience.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.session-audience.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="admin-content-link {{ request()->routeIs('website-content.session-audience.*') ? 'is-active bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }} block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150">
                             Session Audience Section
                         </a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Link: Employee Control -->
                 <a href="{{ url('admin/employees') }}" 
-                   class="group admin-subtle-link flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'employees' ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}">
+                   class="group admin-nav-link admin-subtle-link flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'employees' ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}">
                     <i class="fa-solid fa-users-gear mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'employees' ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-violet-200' }}"></i>
                     Employee Control
                 </a>
@@ -389,6 +460,23 @@
                 
                 // Dispatch window event so that any charts on page re-render with the correct theme colors!
                 window.dispatchEvent(new Event('theme-changed'));
+            });
+
+            document.querySelectorAll('[data-sidebar-toggle]').forEach((trigger) => {
+                const panelId = trigger.getAttribute('aria-controls');
+                const panel = panelId ? document.getElementById(panelId) : null;
+
+                if (!panel) {
+                    return;
+                }
+
+                trigger.addEventListener('click', function () {
+                    const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+                    const nextOpen = !isOpen;
+
+                    trigger.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
+                    panel.setAttribute('data-open', nextOpen ? 'true' : 'false');
+                });
             });
         });
     </script>
