@@ -225,6 +225,50 @@
             background: rgba(139, 92, 246, 0.9);
         }
 
+        .dark .admin-panel input,
+        .dark .admin-panel textarea,
+        .dark .admin-panel select {
+            color: #f5f3ff !important;
+            caret-color: #f5f3ff;
+        }
+
+        .dark .admin-panel input::placeholder,
+        .dark .admin-panel textarea::placeholder {
+            color: #9f94bd !important;
+            opacity: 1;
+        }
+
+        .dark .admin-panel label,
+        .dark .admin-panel .settings-label,
+        .dark .admin-panel .text-slate-500,
+        .dark .admin-panel .text-slate-400 {
+            color: #a99fc4 !important;
+        }
+
+        .dark .admin-panel .text-gmcBlue,
+        .dark .admin-panel .dark\:text-violet-200,
+        .dark .admin-panel .dark\:text-violet-300,
+        .dark .admin-panel .dark\:text-blue-300,
+        .dark .admin-panel .dark\:text-blue-400 {
+            color: #ddd6fe !important;
+        }
+
+        .dark .admin-panel .text-gmcGreen {
+            color: #d8ccfb !important;
+        }
+
+        .dark .admin-panel .text-gmcGold {
+            color: #f4c56a !important;
+        }
+
+        .dark .admin-panel .bg-violet-500\/10,
+        .dark .admin-panel .bg-violet-500\/15,
+        .dark .admin-panel .bg-violet-950\/30,
+        .dark .admin-panel .bg-blue-950\/30,
+        .dark .admin-panel .bg-blue-950\/20 {
+            background-color: rgba(255, 255, 255, 0.06) !important;
+        }
+
         /* Global dark-mode recolor so existing admin blue utilities inherit the purple theme */
         .dark .dark\:text-blue-400,
         .dark .dark\:hover\:text-blue-400:hover,
