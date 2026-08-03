@@ -12,8 +12,8 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // Check local storage or system preference to apply dark mode before page load
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        // Default to dark mode for the luxury SaaS admin theme unless light is explicitly chosen
+        if (localStorage.theme === 'dark' || !('theme' in localStorage)) {
             document.documentElement.classList.add('dark');
         } else {
             document.documentElement.classList.remove('dark');
@@ -28,30 +28,30 @@
                         sora: ['Sora', 'sans-serif'],
                     },
                     colors: {
-                        gmcBlue: '#0f766e',      // Primary admin accent shifted to emerald teal
-                        gmcBlueDark: '#115e59',  
-                        gmcGreen: '#22c55e',     // Supporting green accent
-                        gmcGreenDark: '#15803d',
-                        gmcBg: '#f8fafc',
+                        gmcBlue: '#8b5cf6',
+                        gmcBlueDark: '#6d28d9',
+                        gmcGreen: '#c084fc',
+                        gmcGreenDark: '#a855f7',
+                        gmcBg: '#f5f3ff',
                         gmcPanel: '#ffffff',
-                        gmcBorder: '#e2e8f0',
-                        gmcText: '#0f172a',
-                        gmcMuted: '#64748b',
-                        gmcGold: '#b45309',
+                        gmcBorder: '#ddd6fe',
+                        gmcText: '#1e1b4b',
+                        gmcMuted: '#7c6fa5',
+                        gmcGold: '#f4c56a',
                         slate: {
-                            50: '#f8fafc',
-                            100: '#f1f5f9',
-                            200: '#e2e8f0',
-                            300: '#cbd5e1',
-                            400: '#94a3b8',
-                            500: '#64748b',
-                            600: '#475569',
-                            700: '#3f4b63',
-                            800: '#51607a', // softer slate for dark-mode borders and muted surfaces
-                            850: '#64748b', // supporting dark-mode text and subtle dividers
-                            855: '#73839b', // secondary details with better readability
-                            900: '#1f2937', // lifted charcoal for panels and sidebar
-                            950: '#111827', // softer night background instead of near-black
+                            50: '#f8f5ff',
+                            100: '#f1eaff',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#2a1f45',
+                            850: '#b6abd7',
+                            855: '#d2c7f0',
+                            900: '#140f24',
+                            950: '#090611',
                         }
                     }
                 }
@@ -82,26 +82,69 @@
             border-radius: 3px;
         }
         .dark ::-webkit-scrollbar-thumb {
-            background: #64748b;
+            background: #4c3b72;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+            background: #a78bfa;
         }
         .dark ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+            background: #8b5cf6;
+        }
+        body {
+            background-image:
+                radial-gradient(circle at top left, rgba(139, 92, 246, 0.10), transparent 32%),
+                radial-gradient(circle at 82% 18%, rgba(192, 132, 252, 0.10), transparent 24%),
+                linear-gradient(180deg, rgba(248, 245, 255, 0.92) 0%, rgba(255, 255, 255, 1) 48%);
         }
         .dark body {
             background-image:
-                radial-gradient(circle at top, rgba(16, 185, 129, 0.10), transparent 30%),
-                linear-gradient(180deg, rgba(20, 83, 45, 0.12) 0%, rgba(17, 24, 39, 0) 42%);
+                radial-gradient(circle at top left, rgba(139, 92, 246, 0.28), transparent 34%),
+                radial-gradient(circle at 80% 20%, rgba(192, 132, 252, 0.16), transparent 28%),
+                linear-gradient(180deg, rgba(28, 20, 48, 0.94) 0%, rgba(9, 6, 17, 1) 56%);
         }
 
-        /* Global dark-mode recolor so existing admin blue utilities inherit the new emerald theme */
+        .admin-glow {
+            box-shadow:
+                0 24px 80px rgba(6, 3, 14, 0.42),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .admin-panel {
+            backdrop-filter: blur(18px);
+        }
+
+        .dark .admin-panel {
+            background: linear-gradient(180deg, rgba(20, 15, 36, 0.96), rgba(12, 8, 22, 0.9));
+            border-color: rgba(139, 92, 246, 0.16);
+        }
+
+        .dark .admin-sidebar-sheen::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 26%),
+                radial-gradient(circle at top, rgba(139, 92, 246, 0.14), transparent 46%);
+        }
+
+        .dark .admin-active-link {
+            background: linear-gradient(90deg, rgba(139, 92, 246, 0.24), rgba(192, 132, 252, 0.12));
+            border-color: rgba(167, 139, 250, 0.72);
+            color: #f5f3ff;
+            box-shadow: 0 14px 30px rgba(76, 29, 149, 0.22);
+        }
+
+        .dark .admin-subtle-link:hover {
+            background: rgba(139, 92, 246, 0.12);
+        }
+
+        /* Global dark-mode recolor so existing admin blue utilities inherit the purple theme */
         .dark .dark\:text-blue-400,
         .dark .dark\:hover\:text-blue-400:hover,
         .dark .dark\:group-hover\:text-blue-400:hover,
         .dark .dark\:group-hover\:text-blue-400 {
-            color: #5eead4 !important;
+            color: #c4b5fd !important;
         }
 
         .dark .dark\:bg-blue-950\/20,
@@ -112,17 +155,17 @@
         .dark .dark\:hover\:bg-blue-900\/30:hover,
         .dark .dark\:bg-blue-950,
         .dark .dark\:bg-blue-950\/50 {
-            background-color: rgba(16, 185, 129, 0.16) !important;
+            background-color: rgba(139, 92, 246, 0.16) !important;
         }
 
         .dark .dark\:border-blue-900,
         .dark .dark\:hover\:border-blue-900:hover,
         .dark .dark\:focus\:border-blue-500:focus {
-            border-color: rgba(16, 185, 129, 0.42) !important;
+            border-color: rgba(139, 92, 246, 0.42) !important;
         }
 
         .dark .dark\:focus\:ring-blue-500\/10:focus {
-            --tw-ring-color: rgba(45, 212, 191, 0.18) !important;
+            --tw-ring-color: rgba(139, 92, 246, 0.18) !important;
         }
     </style>
 
@@ -134,12 +177,12 @@
     <div class="min-h-full">
         
         <!-- Sidebar Navigation Panel (Responsive, Light & Dark Theme) -->
-        <aside class="fixed inset-y-0 left-0 z-30 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col transition-colors duration-200">
+        <aside class="admin-sidebar-sheen fixed inset-y-0 left-0 z-30 flex w-64 flex-col border-r border-slate-200 bg-white/92 transition-colors duration-200 dark:bg-slate-900/90 dark:border-violet-500/10">
             <!-- Brand Header -->
-            <div class="h-16 flex items-center px-6 border-b border-slate-100 dark:border-slate-800/60 bg-white dark:bg-slate-900 transition-colors duration-200">
+            <div class="h-16 flex items-center border-b border-slate-100 bg-white/90 px-6 transition-colors duration-200 dark:border-violet-500/10 dark:bg-transparent">
                 <a href="{{ url('admin/dashboard') }}" class="flex items-center space-x-2.5">
                     <!-- GMC Primary Logo Gradient -->
-                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-gmcBlue to-gmcGreen flex items-center justify-center text-white shadow-md shadow-emerald-200 dark:shadow-none">
+                    <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-gmcBlue via-violet-500 to-gmcGreen text-white shadow-md shadow-violet-200/70 dark:shadow-[0_0_25px_rgba(139,92,246,0.35)]">
                         <i class="fa-solid fa-graduation-cap text-sm"></i>
                     </div>
                     <span class="font-sora font-extrabold text-lg text-slate-850 dark:text-white tracking-tight">GMC Sessions</span>
@@ -153,8 +196,8 @@
                 @if(auth()->user()->hasPermission('dashboard'))
                 <!-- Link: Dashboard -->
                 <a href="{{ url('admin/dashboard') }}" 
-                   class="group flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'dashboard' ? 'bg-emerald-50/80 text-gmcBlue dark:bg-emerald-950/20 dark:text-emerald-300 font-bold border-l-4 border-gmcBlue' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white' }}">
-                    <i class="fa-solid fa-chart-pie mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'dashboard' ? 'text-gmcBlue dark:text-emerald-300' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300' }}"></i>
+                   class="group admin-subtle-link flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'dashboard' ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}">
+                    <i class="fa-solid fa-chart-pie mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'dashboard' ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-violet-200' }}"></i>
                     Dashboard
                 </a>
                 @endif
@@ -162,8 +205,8 @@
                 @if(auth()->user()->hasPermission('proofs'))
                 <!-- Link: Payment Proofs -->
                 <a href="{{ url('admin/payment-proofs/index') }}" 
-                   class="group flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'payment_proofs' ? 'bg-emerald-50/80 text-gmcBlue dark:bg-emerald-950/20 dark:text-emerald-300 font-bold border-l-4 border-gmcBlue' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white' }}">
-                    <i class="fa-solid fa-file-invoice-dollar mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'payment_proofs' ? 'text-gmcBlue dark:text-emerald-300' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300' }}"></i>
+                   class="group admin-subtle-link flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'payment_proofs' ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}">
+                    <i class="fa-solid fa-file-invoice-dollar mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'payment_proofs' ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-violet-200' }}"></i>
                     Payment Proofs
                 </a>
                 @endif
@@ -171,8 +214,8 @@
                 @if(auth()->user()->hasPermission('sizes'))
                 <!-- Link: Sizes -->
                 <a href="{{ url('admin/size/index') }}" 
-                   class="group flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'size' ? 'bg-emerald-50/80 text-gmcBlue dark:bg-emerald-950/20 dark:text-emerald-300 font-bold border-l-4 border-gmcBlue' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white' }}">
-                    <i class="fa-solid fa-ruler-combined mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'size' ? 'text-gmcBlue dark:text-emerald-300' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300' }}"></i>
+                   class="group admin-subtle-link flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'size' ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}">
+                    <i class="fa-solid fa-ruler-combined mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'size' ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-violet-200' }}"></i>
                     Size Parameters
                 </a>
                 @endif
@@ -180,8 +223,8 @@
                 @if(auth()->user()->role === 'owner')
                 <!-- Link: Account Settings -->
                 <a href="{{ url('admin/settings') }}" 
-                   class="group flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'settings' ? 'bg-emerald-50/80 text-gmcBlue dark:bg-emerald-950/20 dark:text-emerald-300 font-bold border-l-4 border-gmcBlue' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white' }}">
-                    <i class="fa-solid fa-gears mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'settings' ? 'text-gmcBlue dark:text-emerald-300' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300' }}"></i>
+                   class="group admin-subtle-link flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'settings' ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}">
+                    <i class="fa-solid fa-gears mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'settings' ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-violet-200' }}"></i>
                     Account Settings
                 </a>
 
@@ -189,49 +232,49 @@
                     $isWebsiteContentRoute = request()->routeIs('website-content.*');
                 @endphp
 
-                <div class="rounded-2xl border border-slate-200/70 bg-slate-50/70 p-2 transition-colors dark:border-slate-800 dark:bg-slate-950/30">
+                <div class="rounded-2xl border border-slate-200/70 bg-slate-50/70 p-2 transition-colors dark:border-violet-500/10 dark:bg-white/[0.03]">
                     <div class="flex items-center px-2 py-2">
-                        <div class="flex items-center text-sm font-semibold {{ $isWebsiteContentRoute ? 'text-gmcBlue dark:text-emerald-300' : 'text-slate-600 dark:text-slate-300' }}">
-                            <i class="fa-solid fa-window-maximize mr-3 text-base {{ $isWebsiteContentRoute ? 'text-gmcBlue dark:text-emerald-300' : 'text-slate-400 dark:text-slate-500' }}"></i>
+                        <div class="flex items-center text-sm font-semibold {{ $isWebsiteContentRoute ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-600 dark:text-slate-300' }}">
+                            <i class="fa-solid fa-window-maximize mr-3 text-base {{ $isWebsiteContentRoute ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-400 dark:text-slate-500' }}"></i>
                             Website Content
                         </div>
                     </div>
 
                     <div class="mt-1 space-y-1">
                         <a href="{{ route('website-content.hero.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.hero.*') ? 'bg-emerald-50 text-gmcBlue dark:bg-emerald-950/20 dark:text-emerald-300' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.hero.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
                             Hero Section
                         </a>
                         <a href="{{ route('website-content.scholarship-solution.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.scholarship-solution.*') ? 'bg-emerald-50 text-gmcBlue dark:bg-emerald-950/20 dark:text-emerald-300' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.scholarship-solution.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
                             Section Below Hero
                         </a>
                         <a href="{{ route('website-content.strategy-ribbon.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.strategy-ribbon.*') ? 'bg-emerald-50 text-gmcBlue dark:bg-emerald-950/20 dark:text-emerald-300' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.strategy-ribbon.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
                             Strategy Ribbon
                         </a>
                         <a href="{{ route('website-content.mentor-trust.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.mentor-trust.*') ? 'bg-emerald-50 text-gmcBlue dark:bg-emerald-950/20 dark:text-emerald-300' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.mentor-trust.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
                             Mentor Section
                         </a>
                         <a href="{{ route('website-content.guarantee.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.guarantee.*') ? 'bg-emerald-50 text-gmcBlue dark:bg-emerald-950/20 dark:text-emerald-300' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.guarantee.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
                             Guarantee Section
                         </a>
                         <a href="{{ route('website-content.enrollment-flow.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.enrollment-flow.*') ? 'bg-emerald-50 text-gmcBlue dark:bg-emerald-950/20 dark:text-emerald-300' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.enrollment-flow.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
                             Enrollment Flow
                         </a>
                         <a href="{{ route('website-content.faq.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.faq.*') ? 'bg-emerald-50 text-gmcBlue dark:bg-emerald-950/20 dark:text-emerald-300' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.faq.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
                             FAQ Section
                         </a>
                         <a href="{{ route('website-content.media-proof.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.media-proof.*') ? 'bg-emerald-50 text-gmcBlue dark:bg-emerald-950/20 dark:text-emerald-300' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.media-proof.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
                             Media Proof Section
                         </a>
                         <a href="{{ route('website-content.session-audience.edit') }}"
-                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.session-audience.*') ? 'bg-emerald-50 text-gmcBlue dark:bg-emerald-950/20 dark:text-emerald-300' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white' }}">
+                           class="block rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-150 {{ request()->routeIs('website-content.session-audience.*') ? 'bg-violet-50 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200' : 'text-slate-600 dark:text-slate-400 hover:bg-white dark:hover:bg-violet-500/10 hover:text-slate-900 dark:hover:text-white' }}">
                             Session Audience Section
                         </a>
                     </div>
@@ -239,8 +282,8 @@
 
                 <!-- Link: Employee Control -->
                 <a href="{{ url('admin/employees') }}" 
-                   class="group flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'employees' ? 'bg-emerald-50/80 text-gmcBlue dark:bg-emerald-950/20 dark:text-emerald-300 font-bold border-l-4 border-gmcBlue' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white' }}">
-                    <i class="fa-solid fa-users-gear mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'employees' ? 'text-gmcBlue dark:text-emerald-300' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300' }}"></i>
+                   class="group admin-subtle-link flex items-center px-3.5 py-3 text-sm font-medium rounded-xl transition-all duration-150 {{ $active == 'employees' ? 'admin-active-link bg-violet-50/80 text-gmcBlue font-bold border-l-4 border-gmcBlue dark:text-violet-100' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:text-white' }}">
+                    <i class="fa-solid fa-users-gear mr-3 text-lg transition-transform group-hover:scale-110 {{ $active == 'employees' ? 'text-gmcBlue dark:text-violet-200' : 'text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-violet-200' }}"></i>
                     Employee Control
                 </a>
                 @endif
@@ -254,9 +297,9 @@
             </nav>
             
             <!-- Sidebar Footer -->
-            <div class="p-4 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50">
+            <div class="border-t border-slate-100 bg-slate-50/50 p-4 dark:border-violet-500/10 dark:bg-white/[0.03]">
                 <div class="flex items-center space-x-3">
-                    <div class="w-9 h-9 rounded-full bg-emerald-100 dark:bg-emerald-950/30 flex items-center justify-center text-gmcBlue dark:text-emerald-300 font-bold text-sm">
+                    <div class="flex h-9 w-9 items-center justify-center rounded-full bg-violet-100 text-gmcBlue dark:bg-violet-500/15 dark:text-violet-200 font-bold text-sm">
                         {{ strtoupper(substr(auth()->user()->name, 0, 2)) }}
                     </div>
                     <div>
@@ -268,10 +311,10 @@
         </aside>
         
         <!-- Top Navbar Header -->
-        <header class="fixed top-0 right-0 left-64 h-16 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 z-20 flex items-center justify-between px-8 transition-colors duration-200">
+        <header class="fixed top-0 right-0 left-64 z-20 flex h-16 items-center justify-between border-b border-slate-200 bg-white/75 px-8 backdrop-blur-md transition-colors duration-200 dark:border-violet-500/10 dark:bg-[#120d20]/72">
             <!-- Left Header: Breadcrumbs -->
             <div class="flex items-center space-x-2 text-sm">
-                <a href="{{ url('admin/dashboard') }}" class="text-slate-400 hover:text-gmcBlue dark:hover:text-emerald-300 transition-colors font-medium">Home</a>
+                <a href="{{ url('admin/dashboard') }}" class="text-slate-400 hover:text-gmcBlue dark:hover:text-violet-200 transition-colors font-medium">Home</a>
                 <span class="text-slate-300 dark:text-slate-700">/</span>
                 <span class="text-slate-700 dark:text-slate-300 font-semibold">{{ $heading }}</span>
             </div>
@@ -280,7 +323,7 @@
             <div class="flex items-center space-x-4">
                 
                 <!-- Dynamic Theme Switcher Button -->
-                <button id="theme-toggle" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all focus:outline-none" title="Toggle Light / Dark Mode">
+                <button id="theme-toggle" class="p-2.5 rounded-xl border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 transition-all focus:outline-none dark:border-violet-500/10 dark:bg-white/[0.04] dark:text-slate-300 dark:hover:bg-violet-500/10" title="Toggle Light / Dark Mode">
                     <i id="theme-toggle-dark-icon" class="fa-solid fa-moon text-base hidden"></i>
                     <i id="theme-toggle-light-icon" class="fa-solid fa-sun text-base hidden text-amber-500"></i>
                 </button>
@@ -291,14 +334,14 @@
                         {{ auth()->user()->role === 'owner' ? 'System Owner' : 'Revenue Officer' }}
                     </span>
                 </div>
-                <div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-650 dark:text-slate-350 font-bold">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 text-slate-650 font-bold dark:border-violet-500/10 dark:bg-white/[0.04] dark:text-violet-100">
                     <i class="fa-solid fa-user-shield"></i>
                 </div>
             </div>
         </header>
         
         <!-- Content Container -->
-        <main class="pl-64 min-h-screen bg-slate-50 dark:bg-slate-950 transition-colors duration-200">
+        <main class="min-h-screen pl-64 bg-slate-50 transition-colors duration-200 dark:bg-transparent">
             <div class="pt-20 px-8 pb-12 max-w-[1600px] mx-auto">
                 
                 <!-- Dynamic Page Header -->
@@ -355,9 +398,9 @@
             const isDarkMode = document.documentElement.classList.contains('dark');
 
             const swalTheme = {
-                background: isDarkMode ? '#1f2937' : '#ffffff',
+                background: isDarkMode ? '#140f24' : '#ffffff',
                 color: isDarkMode ? '#f8fafc' : '#0f172a',
-                confirmButtonColor: '#0f766e',
+                confirmButtonColor: '#8b5cf6',
                 customClass: {
                     popup: 'rounded-[22px]',
                     confirmButton: 'rounded-xl px-5 py-3 font-bold',
