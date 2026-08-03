@@ -26,13 +26,13 @@
             </div>
         </div>
 
-        <!-- Card 3: Approved Sessions (GMC Blue Theme) -->
+        <!-- Card 3: Approved Sessions (Emerald Theme) -->
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-gmcBlue/30 dark:hover:border-gmcBlue/30 p-6 rounded-2xl flex items-center justify-between transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-0.5 group">
             <div class="space-y-1">
                 <span class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-semibold">Approved Sessions</span>
                 <h2 class="text-2xl font-black text-slate-800 dark:text-white font-sora">{{ $approvedCount }}</h2>
             </div>
-            <div class="w-14 h-14 bg-blue-50 dark:bg-blue-950/25 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 text-gmcBlue rounded-xl flex items-center justify-center text-xl transition-colors">
+            <div class="w-14 h-14 bg-emerald-50 dark:bg-emerald-950/25 group-hover:bg-emerald-100 dark:group-hover:bg-emerald-900/30 text-gmcBlue rounded-xl flex items-center justify-center text-xl transition-colors">
                 <i class="fa-solid fa-circle-check"></i>
             </div>
         </div>
@@ -54,7 +54,7 @@
         <!-- Revenue Line Chart -->
         <div class="lg:col-span-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm">
             <h5 class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 text-slate-800 dark:text-white font-semibold font-sora text-sm flex items-center">
-                <i class="fa-solid fa-chart-line text-gmcBlue dark:text-blue-400 mr-2 text-base"></i> Revenue Trend (Last 15 Days)
+                <i class="fa-solid fa-chart-line text-gmcBlue dark:text-emerald-300 mr-2 text-base"></i> Revenue Trend (Last 15 Days)
             </h5>
             <div class="p-6">
                 <div class="h-[300px] w-full relative">
@@ -80,7 +80,7 @@
         <!-- Bar Chart for Program Stats -->
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm">
             <h5 class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 text-slate-800 dark:text-white font-semibold font-sora text-sm flex items-center">
-                <i class="fa-solid fa-graduation-cap text-gmcBlue dark:text-blue-400 mr-2 text-base"></i> Program Enrollments
+                <i class="fa-solid fa-graduation-cap text-gmcBlue dark:text-emerald-300 mr-2 text-base"></i> Program Enrollments
             </h5>
             <div class="p-6">
                 <div class="h-[250px] w-full relative">
@@ -95,7 +95,7 @@
                 <span class="flex items-center">
                     <i class="fa-solid fa-clock-rotate-left text-gmcGreen mr-2 text-base"></i> Recent Payment Activities
                 </span>
-                <a href="{{ route('payment-proofs.index') }}" class="text-xs text-gmcBlue dark:text-blue-400 hover:underline font-bold transition-all">View All Submissions</a>
+                <a href="{{ route('payment-proofs.index') }}" class="text-xs text-gmcBlue dark:text-emerald-300 hover:underline font-bold transition-all">View All Submissions</a>
             </h5>
             <div class="overflow-x-auto">
                 <table class="w-full text-left border-collapse text-sm">
@@ -113,7 +113,7 @@
                             <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors duration-150">
                                 <td class="py-3.5 px-4">
                                     <div class="font-bold text-slate-800 dark:text-white">{{ $submission->full_name }}</div>
-                                    <span class="text-[10px] text-gmcBlue dark:text-blue-400 font-bold font-mono">{{ strtoupper($submission->submission_id) }}</span>
+                                    <span class="text-[10px] text-gmcBlue dark:text-emerald-300 font-bold font-mono">{{ strtoupper($submission->submission_id) }}</span>
                                     @if($submission->duplicate_submission)
                                         <span class="ml-1 bg-red-50 dark:bg-red-950/20 text-red-550 dark:text-red-400 border border-red-100 dark:border-red-900/30 text-[9px] px-1 rounded font-bold">Dup</span>
                                     @endif
@@ -142,7 +142,7 @@
                                 <td class="py-3.5 px-4 text-center">
                                     <div class="inline-flex space-x-1.5">
                                         <a href="{{ route('payment-proofs.show', $submission->id) }}" 
-                                           class="p-1.5 bg-slate-50 dark:bg-slate-850 hover:bg-blue-50 dark:hover:bg-blue-950 border border-slate-200 dark:border-slate-800 text-xs rounded text-slate-500 hover:text-gmcBlue dark:hover:text-blue-400 transition" title="View details">
+                                           class="p-1.5 bg-slate-50 dark:bg-slate-850 hover:bg-emerald-50 dark:hover:bg-emerald-950/25 border border-slate-200 dark:border-slate-800 text-xs rounded text-slate-500 hover:text-gmcBlue dark:hover:text-emerald-300 transition" title="View details">
                                             <i class="fa-solid fa-eye"></i>
                                         </a>
                                         <a href="{{ route('payment-proofs.edit', $submission->id) }}" 
@@ -183,6 +183,9 @@
                 // Color parameters based on active theme
                 const gridColor = isDark ? 'rgba(255, 255, 255, 0.06)' : '#f1f5f9';
                 const labelColor = isDark ? '#94a3b8' : '#64748b';
+                const primaryAccent = '#0f766e';
+                const primaryAccentSoft = isDark ? 'rgba(15, 118, 110, 0.38)' : 'rgba(15, 118, 110, 0.16)';
+                const panelBorder = isDark ? '#111827' : '#ffffff';
 
                 Chart.defaults.color = labelColor;
                 Chart.defaults.font.family = "'Manrope', sans-serif";
@@ -191,11 +194,11 @@
                 const revenueCtx = document.getElementById('revenueChart').getContext('2d');
                 const lineGradient = revenueCtx.createLinearGradient(0, 0, 0, 300);
                 if (isDark) {
-                    lineGradient.addColorStop(0, 'rgba(14, 61, 129, 0.4)');
-                    lineGradient.addColorStop(1, 'rgba(14, 61, 129, 0.0)');
+                    lineGradient.addColorStop(0, primaryAccentSoft);
+                    lineGradient.addColorStop(1, 'rgba(15, 118, 110, 0)');
                 } else {
-                    lineGradient.addColorStop(0, 'rgba(14, 61, 129, 0.15)');
-                    lineGradient.addColorStop(1, 'rgba(14, 61, 129, 0.0)');
+                    lineGradient.addColorStop(0, primaryAccentSoft);
+                    lineGradient.addColorStop(1, 'rgba(15, 118, 110, 0)');
                 }
 
                 revenueChart = new Chart(revenueCtx, {
@@ -205,12 +208,12 @@
                         datasets: [{
                             label: 'Approved Revenue ($)',
                             data: @json($revenueValues),
-                            borderColor: '#0e3d81',
+                            borderColor: primaryAccent,
                             borderWidth: 3,
                             backgroundColor: lineGradient,
                             fill: true,
                             tension: 0.4,
-                            pointBackgroundColor: '#0e3d81',
+                            pointBackgroundColor: primaryAccent,
                             pointBorderColor: '#fff',
                             pointHoverRadius: 7,
                             pointRadius: 4
@@ -247,12 +250,12 @@
                         datasets: [{
                             data: @json($paymentMethodValues),
                             backgroundColor: [
-                                '#0e3d81', // GMC Blue
-                                '#39b54a', // GMC Green
-                                '#f59e0b', // Amber/Gold
-                                '#38bdf8'  // Sky
+                                '#0f766e',
+                                '#22c55e',
+                                '#f59e0b',
+                                '#f97316'
                             ],
-                            borderColor: isDark ? '#111827' : '#ffffff',
+                            borderColor: panelBorder,
                             borderWidth: 2,
                             hoverOffset: 6
                         }]
@@ -283,11 +286,11 @@
                         datasets: [{
                             label: 'Submissions',
                             data: @json($programStatsValues),
-                            backgroundColor: 'rgba(14, 61, 129, 0.75)',
-                            borderColor: '#0e3d81',
+                            backgroundColor: 'rgba(15, 118, 110, 0.76)',
+                            borderColor: primaryAccent,
                             borderWidth: 1,
                             borderRadius: 6,
-                            hoverBackgroundColor: '#0e3d81'
+                            hoverBackgroundColor: '#115e59'
                         }]
                     },
                     options: {
