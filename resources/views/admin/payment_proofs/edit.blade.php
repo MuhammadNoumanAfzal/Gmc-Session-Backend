@@ -111,7 +111,7 @@
                                 </div>
 
                                 <div class="space-y-1">
-                                    <label for="amount_paid" class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Amount Paid ($)</label>
+                                    <label for="amount_paid" class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Amount Paid (PKR)</label>
                                     <input id="amount_paid" name="amount_paid" type="text" 
                                            class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:border-gmcBlue dark:focus:border-blue-500 text-slate-805 dark:text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-4 focus:ring-gmcBlue/10 dark:focus:ring-blue-500/10 transition" 
                                            value="{{ old('amount_paid', $paymentProof->amount_paid) }}" required>

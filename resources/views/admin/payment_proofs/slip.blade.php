@@ -561,7 +561,7 @@
         <!-- Grand Total -->
         <div class="cost-section">
             <div class="cost-label">Total Verified Amount</div>
-            <div class="cost-amount">${{ number_format($paymentProof->amount_paid, 2) }}</div>
+            <div class="cost-amount">PKR {{ number_format($paymentProof->amount_paid, 2) }}</div>
         </div>
 
         <!-- Security Seal Block -->

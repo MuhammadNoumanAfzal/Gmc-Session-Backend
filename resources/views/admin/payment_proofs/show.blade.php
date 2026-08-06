@@ -43,7 +43,7 @@
                         <!-- Block 2: Amount Verified -->
                         <div class="bg-slate-50 dark:bg-slate-855 border border-slate-200 dark:border-slate-800 p-4 rounded-xl text-center flex flex-col items-center justify-center transition-colors">
                             <span class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-1.5 font-bold">Amount Verified</span>
-                            <span class="text-slate-800 dark:text-white font-extrabold text-2xl">${{ number_format($paymentProof->amount_paid, 2) }}</span>
+                            <span class="text-slate-800 dark:text-white font-extrabold text-2xl">PKR {{ number_format($paymentProof->amount_paid, 2) }}</span>
                         </div>
                         
                         <!-- Block 3: Verification Alerts -->

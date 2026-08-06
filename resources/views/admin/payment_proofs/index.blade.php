@@ -79,7 +79,7 @@
                                         
                                         <!-- Column 3: Amount Paid -->
                                         <td class="py-4 px-4">
-                                            <span class="text-slate-850 dark:text-white font-extrabold text-base">${{ number_format((float) $value->amount_paid, 2) }}</span>
+                                            <span class="text-slate-850 dark:text-white font-extrabold text-base">PKR {{ number_format((float) $value->amount_paid, 2) }}</span>
                                         </td>
                                         
                                         <!-- Column 4: Status -->

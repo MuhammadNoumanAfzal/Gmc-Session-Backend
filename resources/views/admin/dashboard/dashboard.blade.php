@@ -8,11 +8,11 @@
         <div class="admin-panel admin-glow bg-white/90 dark:bg-slate-900 border border-slate-200 dark:border-violet-500/10 hover:border-gmcGreen/40 dark:hover:border-gmcGreen/30 p-6 rounded-[24px] flex items-center justify-between transition-all duration-300 shadow-sm hover:-translate-y-1 group">
             <div class="space-y-1">
                 <span class="text-xs text-slate-400 dark:text-slate-500 uppercase tracking-wider font-semibold">Total Revenue</span>
-                <h2 class="text-2xl font-black text-slate-800 dark:text-white font-sora">${{ number_format($totalRevenue, 2) }}</h2>
+                <h2 class="text-2xl font-black text-slate-800 dark:text-white font-sora">PKR {{ number_format($totalRevenue, 2) }}</h2>
                 <p class="text-[11px] text-slate-500 dark:text-slate-400">Premium payment volume across approved sessions.</p>
             </div>
             <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-violet-50 text-gmcGreen transition-colors group-hover:bg-violet-100 dark:bg-violet-500/15 dark:text-violet-200 dark:group-hover:bg-violet-500/25 text-xl">
-                <i class="fa-solid fa-dollar-sign"></i>
+                <i class="fa-solid fa-rupee-sign"></i>
             </div>
         </div>
 
@@ -133,7 +133,7 @@
                                         echo $names[$submission->program_id] ?? ucwords(str_replace('_', ' ', $submission->program_id));
                                     @endphp
                                 </td>
-                                <td class="py-3.5 px-4 text-slate-800 dark:text-white font-bold">${{ number_format($submission->amount_paid, 2) }}</td>
+                                <td class="py-3.5 px-4 text-slate-800 dark:text-white font-bold">PKR {{ number_format($submission->amount_paid, 2) }}</td>
                                 <td class="py-3.5 px-4">
                                     @if($submission->status === 'approved')
                                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-violet-50 dark:bg-violet-500/15 text-gmcGreen border border-violet-100 dark:border-violet-400/20 uppercase">Approved</span>
@@ -212,7 +212,7 @@
                     data: {
                         labels: @json($revenueLabels),
                         datasets: [{
-                            label: 'Approved Revenue ($)',
+                            label: 'Approved Revenue (PKR)',
                             data: @json($revenueValues),
                             borderColor: primaryAccent,
                             borderWidth: 3,
@@ -240,7 +240,7 @@
                                 grid: { color: gridColor },
                                 border: { dash: [5, 5] },
                                 ticks: {
-                                    callback: function(value) { return '$' + value; }
+                                    callback: function(value) { return 'PKR ' + value; }
                                 }
                             }
                         }
